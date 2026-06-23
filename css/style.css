@@ -1,0 +1,323 @@
+/* Reset y estilos base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: white;
+    text-align: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    padding: 2rem;
+}
+
+.hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    margin-bottom: 2rem;
+    font-style: italic;
+    opacity: 0.9;
+}
+
+.cita {
+    font-size: 1.2rem;
+    font-style: italic;
+    margin: 2rem 0;
+    padding: 1.5rem;
+    border-left: 4px solid #fff;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.cita cite {
+    display: block;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.manifiesto {
+    margin: 2rem 0;
+    text-align: left;
+}
+
+.manifiesto h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.manifiesto p {
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+}
+
+/* Botones */
+.btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    background: #fff;
+    color: #1e3c72;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.btn:hover {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Secciones generales */
+.section {
+    padding: 4rem 2rem;
+}
+
+.section-alt {
+    background: white;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    color: #1e3c72;
+}
+
+/* Videos Grid */
+.video-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.video-item {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+}
+
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.video-item h3 {
+    padding: 1rem;
+    font-size: 1.2rem;
+    color: #1e3c72;
+}
+
+.video-item p {
+    padding: 0 1rem 1rem;
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Biografía */
+.bio-content {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: justify;
+}
+
+.bio-content p {
+    margin-bottom: 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+
+/* Partituras */
+.partituras-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+}
+
+.partituras-categoria h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: #1e3c72;
+    border-bottom: 3px solid #2a5298;
+    padding-bottom: 0.5rem;
+}
+
+.partituras-lista {
+    list-style: none;
+}
+
+.partituras-lista li {
+    margin-bottom: 0.8rem;
+}
+
+.partituras-lista a {
+    color: #2a5298;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.partituras-lista a:before {
+    content: "📄";
+    margin-right: 0.5rem;
+}
+
+.partituras-lista a:hover {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+/* Discos */
+.discos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+}
+
+.disco-item {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.disco-item:hover {
+    transform: translateY(-5px);
+}
+
+.disco-portada {
+    width: 100%;
+    aspect-ratio: 1;
+    background: #ddd;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.disco-portada img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.disco-item h3 {
+    font-size: 1.2rem;
+    color: #1e3c72;
+    margin-bottom: 0.5rem;
+}
+
+.disco-item p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* Footer */
+.footer {
+    background: #1e3c72;
+    color: white;
+    text-align: center;
+    padding: 2rem;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+}
+
+.social-links {
+    margin-top: 1rem;
+}
+
+.social-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 1rem;
+    font-weight: 600;
+    transition: opacity 0.3s ease;
+}
+
+.social-links a:hover {
+    opacity: 0.8;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .section h2 {
+        font-size: 2rem;
+    }
+    
+    .video-grid,
+    .partituras-grid,
+    .discos-grid {
+        grid-template-columns: 1fr;
+    }
+}
