@@ -242,7 +242,7 @@ body {
 }
 
 .partituras-lista a:before {
-    content: "📄";
+    content: "";
     margin-right: 0.5rem;
 }
 
@@ -337,7 +337,7 @@ body {
     }
     
     .hero-video {
-        opacity: 0.15;
+        opacity: 0.3;
         display: block;
     }
     
