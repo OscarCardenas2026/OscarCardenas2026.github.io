@@ -242,7 +242,7 @@ body {
 }
 
 .partituras-lista a:before {
-    content: "";
+    content: "📄";
     margin-right: 0.5rem;
 }
 
@@ -337,8 +337,8 @@ body {
     }
     
     .hero-video {
-        opacity: 0.1;
-        display: none;
+        opacity: 0.15;
+        display: block;
     }
     
     .hero-content {
@@ -401,5 +401,39 @@ body {
     .bio-content p {
         font-size: 1rem;
         line-height: 1.6;
+    }
+    
+    /* Footer mejorado para móvil */
+    .footer {
+        padding: 2rem 1rem;
+    }
+    
+    .footer p {
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .social-links {
+        margin-top: 1.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: center;
+    }
+    
+    .social-links a {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 8px;
+        font-size: 1rem;
+        color: #fff !important;
+        text-decoration: none;
+        border: 1px solid rgba(255, 255, 255, 0.4);
+        min-width: 200px;
+    }
+    
+    .social-links a:hover {
+        background: rgba(255, 255, 255, 0.25);
     }
 }
