@@ -16,6 +16,7 @@ body {
 .hero {
     position: relative;
     height: 100vh;
+    min-height: 600px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -170,7 +171,7 @@ body {
 
 .video-container {
     position: relative;
-    padding-bottom: 56.25%; /* 16:9 */
+    padding-bottom: 56.25%;
     height: 0;
     overflow: hidden;
 }
@@ -241,7 +242,7 @@ body {
 }
 
 .partituras-lista a:before {
-    content: "📄";
+    content: "";
     margin-right: 0.5rem;
 }
 
@@ -329,24 +330,76 @@ body {
 
 /* Responsive */
 @media (max-width: 768px) {
+    .hero {
+        min-height: 100vh;
+        height: auto;
+        padding: 2rem 1rem;
+    }
+    
+    .hero-video {
+        opacity: 0.1;
+        display: none;
+    }
+    
+    .hero-content {
+        padding: 1rem;
+        position: relative;
+    }
+    
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .subtitle {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cita {
+        font-size: 1rem;
+        padding: 1rem;
+        margin: 1rem 0;
+    }
+    
+    .manifiesto {
+        padding: 1rem;
+        margin: 1rem 0;
+        font-size: 0.95rem;
+    }
+    
+    .manifiesto h2 {
+        font-size: 1.2rem;
+    }
+    
+    .manifiesto p {
+        font-size: 0.95rem;
+        margin-bottom: 0.8rem;
+    }
+    
+    .section {
+        padding: 2rem 1rem;
     }
     
     .section h2 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
     
     .video-grid,
     .partituras-grid,
     .discos-grid {
         grid-template-columns: 1fr;
+        gap: 1.5rem;
     }
-}
-/* Forzar visualización de la primera portada */
-.disco-item:first-child .disco-portada img {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    min-height: 200px;
+    
+    .btn {
+        padding: 0.7rem 1.5rem;
+        font-size: 0.95rem;
+    }
+    
+    .bio-content p {
+        font-size: 1rem;
+        line-height: 1.6;
+    }
 }
