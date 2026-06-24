@@ -34,6 +34,22 @@ body {
     background: rgba(0, 0, 0, 0.5);
 }
 
+/* Video del logo en el hero */
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    opacity: 0.4;
+    pointer-events: none;
+    object-fit: cover;
+}
+
 .hero-content {
     position: relative;
     z-index: 1;
