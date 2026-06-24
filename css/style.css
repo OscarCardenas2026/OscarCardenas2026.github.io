@@ -343,3 +343,10 @@ body {
         grid-template-columns: 1fr;
     }
 }
+/* Forzar visualización de la primera portada */
+.disco-item:first-child .disco-portada img {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    min-height: 200px;
+}
