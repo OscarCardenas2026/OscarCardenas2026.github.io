@@ -6,7 +6,7 @@
     <title>Óscar Cárdenas - Compositor y Guitarrista</title>
     <link rel="stylesheet" href="css/style.css">
     
-    <!-- GoatCounter - Estadísticas -->
+    <!-- GoatCounter - Estadísticas privadas -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -218,15 +218,26 @@
             <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
             <p>Compositor y Guitarrista Mexicano</p>
             
-            <!-- Contador de Visitas -->
+            <!-- Contador de Visitas VISIBLE -->
             <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
                 <p style="color: white; font-size: 0.95rem;">
                     👁️ Visitas totales: 
-                    <img src="https://oscar-cardenas.goatcounter.com/count.svg" 
-                         alt="Contador de visitas" 
-                         style="border: 0; vertical-align: middle; margin-left: 0.5rem;">
+                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">-</span>
                 </p>
             </div>
+            
+            <!-- Script para mostrar el número de visitas (CountAPI) -->
+            <script>
+                // Incrementar y mostrar contador de visitas
+                fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
+                    .then(response => response.json())
+                    .then(data => {
+                        document.getElementById('visit-count').textContent = data.value;
+                    })
+                    .catch(error => {
+                        document.getElementById('visit-count').textContent = '15+';
+                    });
+            </script>
             
             <div class="social-links">
                 <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank">YouTube</a>
