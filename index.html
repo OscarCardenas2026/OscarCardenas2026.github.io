@@ -213,38 +213,28 @@
     </section>
 
     <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
-            <p>Compositor y Guitarrista Mexicano</p>
-            
-            <!-- Contador de Visitas VISIBLE -->
-            <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
-                <p style="color: white; font-size: 0.95rem;">
-                    👁️ Visitas totales: 
-                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">-</span>
-                </p>
-            </div>
-            
-            <!-- Script para mostrar el número de visitas (CountAPI) -->
-            <script>
-                // Incrementar y mostrar contador de visitas
-                fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('visit-count').textContent = data.value;
-                    })
-                    .catch(error => {
-                        document.getElementById('visit-count').textContent = '15+';
-                    });
-            </script>
-            
-            <div class="social-links">
-                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank">YouTube</a>
-                <a href="mailto:oecp@protonmail.com">Contacto</a>
-            </div>
+    <!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
+        <p>Compositor y Guitarrista Mexicano</p>
+        
+        <!-- Contador de Visitas de GoatCounter -->
+        <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
+            <p style="color: white; font-size: 0.95rem;">
+                👁️ Visitas totales: 
+                <img src="https://oscar-cardenas.goatcounter.com/count.svg" 
+                     alt="Contador de visitas" 
+                     style="border: 0; vertical-align: middle; margin-left: 0.5rem; display: inline-block;">
+            </p>
         </div>
-    </footer>
+        
+        <div class="social-links">
+            <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank">YouTube</a>
+            <a href="mailto:oecp@protonmail.com">Contacto</a>
+        </div>
+    </div>
+</footer>
 
     <script src="js/main.js"></script>
 </body>
