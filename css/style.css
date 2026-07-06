@@ -466,3 +466,249 @@ body {
         max-width: 200px;
     }
 }
+/* ========== BOTÓN FLOTANTE DE CONCIERTOS ========== */
+.concert-button {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: linear-gradient(135deg, #c9a961 0%, #b08d47 100%);
+    color: #0a0a0a;
+    border: none;
+    padding: 16px 28px;
+    border-radius: 50px;
+    font-size: 1em;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(201, 169, 97, 0.4);
+    z-index: 1000;
+    transition: all 0.3s ease;
+    animation: pulseGold 2.5s infinite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-family: inherit;
+}
+
+.concert-button::before {
+    content: "🎵";
+    font-size: 1.2em;
+}
+
+.concert-button:hover {
+    transform: scale(1.08);
+    box-shadow: 0 12px 35px rgba(201, 169, 97, 0.7);
+}
+
+@keyframes pulseGold {
+    0%, 100% {
+        box-shadow: 0 8px 25px rgba(201, 169, 97, 0.4);
+    }
+    50% {
+        box-shadow: 0 8px 35px rgba(201, 169, 97, 0.8);
+    }
+}
+
+/* ========== MODAL DE CONCIERTOS ========== */
+.concert-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 2000;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.concert-modal.active {
+    display: flex;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.concert-modal-content {
+    background: #fafafa;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 750px;
+    width: 90%;
+    max-height: 85vh;
+    overflow-y: auto;
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.4);
+    position: relative;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.concert-modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2em;
+    color: #666;
+    cursor: pointer;
+    background: none;
+    border: none;
+    transition: color 0.2s;
+    font-family: inherit;
+}
+
+.concert-modal-close:hover {
+    color: #c9a961;
+}
+
+.concert-modal-title {
+    color: #2c2c2c;
+    font-size: 2em;
+    margin-bottom: 30px;
+    text-align: center;
+    font-weight: 300;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.concert-modal-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #c9a961;
+    margin: 15px auto 0;
+}
+
+/* Categorías: solista y cuarteto */
+.concert-category {
+    margin-bottom: 35px;
+}
+
+.concert-category-title {
+    color: #c9a961;
+    font-size: 1.3em;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0d5b8;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.concert-category-title::before {
+    font-size: 1.2em;
+}
+
+.concert-category-title.solo::before {
+    content: "🎸";
+}
+
+.concert-category-title.quartet::before {
+    content: "🎺";
+}
+
+.concert-list {
+    list-style: none;
+}
+
+.concert-item {
+    background: #fff;
+    padding: 20px 25px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    border-left: 5px solid #c9a961;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.concert-item:hover {
+    transform: translateX(8px);
+    box-shadow: 0 5px 20px rgba(201, 169, 97, 0.2);
+}
+
+.concert-item.highlight {
+    background: linear-gradient(135deg, #c9a961 0%, #b08d47 100%);
+    color: #0a0a0a;
+    border-left-color: #0a0a0a;
+    animation: highlightPulse 2.5s infinite;
+}
+
+@keyframes highlightPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.015); }
+}
+
+.concert-date {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.concert-date::before {
+    content: "📅";
+    font-size: 1em;
+}
+
+.concert-venue {
+    font-size: 1.05em;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.concert-details {
+    font-size: 0.9em;
+    line-height: 1.5;
+    opacity: 0.85;
+}
+
+.concert-item.highlight .concert-date,
+.concert-item.highlight .concert-venue,
+.concert-item.highlight .concert-details {
+    color: #0a0a0a;
+}
+
+.no-concerts {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-style: italic;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+/* Responsive para el botón y modal */
+@media (max-width: 768px) {
+    .concert-button {
+        bottom: 20px;
+        right: 20px;
+        padding: 14px 20px;
+        font-size: 0.9em;
+    }
+    
+    .concert-modal-content {
+        padding: 25px 20px;
+    }
+    
+    .concert-modal-title {
+        font-size: 1.5em;
+    }
+    
+    .concert-category-title {
+        font-size: 1.1em;
+    }
+}
