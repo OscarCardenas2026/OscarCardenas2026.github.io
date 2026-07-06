@@ -245,7 +245,84 @@
             </div>
         </div>
     </footer>
+<!-- Botón flotante de conciertos -->
+<button class="concert-button" onclick="openConcertModal()">
+    Próximos Conciertos
+</button>
 
+<!-- Modal de conciertos -->
+<div id="concertModal" class="concert-modal">
+    <div class="concert-modal-content">
+        <button class="concert-modal-close" onclick="closeConcertModal()">&times;</button>
+        <h2 class="concert-modal-title">🎵 Agenda de Conciertos</h2>
+        
+        <!-- CONCIERTOS COMO SOLISTA -->
+        <div class="concert-category">
+            <h3 class="concert-category-title solo">Como Solista</h3>
+            <ul class="concert-list">
+                <!-- Ejemplo de concierto destacado (próximo) -->
+                <!--
+                <li class="concert-item highlight">
+                    <div class="concert-date">29 de Julio de 2026</div>
+                    <div class="concert-venue">Sala de conciertos - Ciudad</div>
+                    <div class="concert-details">Programa: Obras propias y de...</div>
+                </li>
+                -->
+                <li class="no-concerts">Próximamente se anunciarán nuevas fechas</li>
+            </ul>
+        </div>
+
+        <!-- CONCIERTOS CON ES PURiO JAZZ QUARTETO -->
+        <div class="concert-category">
+            <h3 class="concert-category-title quartet">Con ES PURiO JAZZ quarteto</h3>
+            <ul class="concert-list">
+                <!-- Ejemplo de concierto destacado -->
+                <!--
+                <li class="concert-item highlight">
+                    <div class="concert-date">29 de Julio de 2026</div>
+                    <div class="concert-venue">Lugar por confirmar</div>
+                    <div class="concert-details">Detalles del concierto...</div>
+                </li>
+                -->
+                <li class="no-concerts">Próximamente se anunciarán nuevas fechas</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 2px solid #e0d5b8;">
+            <p style="color: #666; font-size: 0.9em;">
+                Para invitaciones y contratación: 
+                <a href="mailto:oecp@protonmail.com" style="color: #c9a961; font-weight: bold;">oecp@protonmail.com</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openConcertModal() {
+        document.getElementById('concertModal').classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeConcertModal() {
+        document.getElementById('concertModal').classList.remove('active');
+        document.body.style.overflow = 'auto';
+    }
+
+    // Cerrar al hacer clic fuera
+    window.onclick = function(event) {
+        const modal = document.getElementById('concertModal');
+        if (event.target == modal) {
+            closeConcertModal();
+        }
+    }
+
+    // Cerrar con tecla Escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeConcertModal();
+        }
+    });
+</script>
     <script src="js/main.js"></script>
 </body>
 </html>
