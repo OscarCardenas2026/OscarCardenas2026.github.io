@@ -616,7 +616,7 @@ body {
 }
 
 .concert-category-title.quartet::before {
-    content: "🎺";
+    content: "🎵";
 }
 
 .concert-list {
