@@ -218,24 +218,32 @@
             <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
             <p>Compositor y Guitarrista Mexicano</p>
             
-            <!-- Contador de Visitas -->
+            <!-- Contador de Visitas (GoatCounter) -->
             <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
                 <p style="color: white; font-size: 0.95rem;">
                     👁️ Visitas totales: 
-                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">-</span>
+                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">Cargando...</span>
                 </p>
             </div>
             
-            <!-- Script del contador con CountAPI -->
+            <!-- Script del contador usando la API JSON de GoatCounter -->
             <script>
-                // Incrementar y mostrar contador de visitas
-                fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
-                    .then(response => response.json())
+                // 'TOTAL' (en mayúsculas) obtiene las visitas acumuladas de todo el sitio.
+                // Si prefieres mostrar solo las visitas de la página actual, cambia 'TOTAL' por: encodeURIComponent(location.pathname)
+                const path = 'TOTAL';
+                
+                fetch(`https://oscar-cardenas.goatcounter.com/counter/${path}.json`)
+                    .then(response => {
+                        if (!response.ok) throw new Error('Error en la respuesta de GoatCounter');
+                        return response.json();
+                    })
                     .then(data => {
-                        document.getElementById('visit-count').textContent = data.value;
+                        // GoatCounter devuelve el campo 'count' con el número formateado
+                        document.getElementById('visit-count').textContent = data.count;
                     })
                     .catch(error => {
-                        document.getElementById('visit-count').textContent = '27';
+                        console.error('Error al obtener visitas:', error);
+                        document.getElementById('visit-count').textContent = 'N/A';
                     });
             </script>
             
