@@ -128,6 +128,31 @@
         </div>
     </section>
 
+    <!-- NUEVA SECCIÓN: RECONOCIMIENTO INSTITUCIONAL -->
+    <section id="reconocimiento" class="section">
+        <div class="container">
+            <h2>Reconocimiento Institucional Reciente</h2>
+            <div style="background: #fafafa; padding: 30px; border-radius: 10px; border-left: 5px solid #c9a961; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                <p style="font-size: 1.1em; margin-bottom: 15px; color: #1a202c;">
+                    La <strong>Secretaría de Cultura</strong> y el <strong>INBAL</strong>, a través del <strong>Museo de Arte Moderno</strong>, han presentado oficialmente el próximo recital de <em>ES PURiO JAZZ quarteto</em> como parte de la programación cultural de la Ciudad de México.
+                </p>
+                <p style="margin-bottom: 20px; color: #2d3748;">
+                    Como <strong>guitarrista, compositor y miembro fundador</strong> de la agrupación, participo en este evento que destaca la fusión orgánica entre el jazz y la música clásica. El programa incluye la interpretación de mis obras originales, como <em>"Apuntes 2012"</em>, reafirmando mi compromiso con la creación y difusión de nuevo repertorio guitarrístico en México.
+                </p>
+                
+                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 25px;">
+                    <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" class="btn" style="background: #1a202c; color: white; text-decoration: none;">
+                        📰 Ver comunicado oficial (gob.mx)
+                    </a>
+                    <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" class="btn" style="background: #c9a961; color: #1a202c; text-decoration: none; font-weight: bold;">
+                        🎵 Ver programa completo del concierto
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FIN SECCIÓN RECONOCIMIENTO -->
+
     <!-- Sección Partituras -->
     <section id="partituras" class="section">
         <div class="container">
@@ -218,32 +243,24 @@
             <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
             <p>Compositor y Guitarrista Mexicano</p>
             
-            <!-- Contador de Visitas (GoatCounter) -->
+            <!-- Contador de Visitas -->
             <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
                 <p style="color: white; font-size: 0.95rem;">
                     👁️ Visitas totales: 
-                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">Cargando...</span>
+                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">-</span>
                 </p>
             </div>
             
-            <!-- Script del contador usando la API JSON de GoatCounter -->
+            <!-- Script del contador con CountAPI -->
             <script>
-                // 'TOTAL' (en mayúsculas) obtiene las visitas acumuladas de todo el sitio.
-                // Si prefieres mostrar solo las visitas de la página actual, cambia 'TOTAL' por: encodeURIComponent(location.pathname)
-                const path = 'TOTAL';
-                
-                fetch(`https://oscar-cardenas.goatcounter.com/counter/${path}.json`)
-                    .then(response => {
-                        if (!response.ok) throw new Error('Error en la respuesta de GoatCounter');
-                        return response.json();
-                    })
+                // Incrementar y mostrar contador de visitas
+                fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
+                    .then(response => response.json())
                     .then(data => {
-                        // GoatCounter devuelve el campo 'count' con el número formateado
-                        document.getElementById('visit-count').textContent = data.count;
+                        document.getElementById('visit-count').textContent = data.value;
                     })
                     .catch(error => {
-                        console.error('Error al obtener visitas:', error);
-                        document.getElementById('visit-count').textContent = 'N/A';
+                        document.getElementById('visit-count').textContent = '27';
                     });
             </script>
             
@@ -283,6 +300,16 @@
                     <div class="concert-date">Miércoles 29 de Julio de 2026, 19:00 hrs</div>
                     <div class="concert-venue">Museo de Arte Moderno, CDMX</div>
                     <div class="concert-details">Noche de Museos - Entrada libre<br>Fusión de barroco y jazz</div>
+                    
+                    <!-- QR DENTRO DEL MODAL -->
+                    <div style="text-align: center; margin: 20px 0;">
+                        <div class="qr-modal-container">
+                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" 
+                                 alt="QR del programa del concierto" style="width: 180px; height: 180px; display: block;">
+                        </div>
+                        <p class="qr-modal-text">📱 Escanea para ver el programa completo</p>
+                    </div>
+
                     <a href="https://view.flodesk.com/emails/6a2996201b7c0f42f6c84c88" target="_blank" style="display: inline-block; background: rgba(255,255,255,0.2); color: white !important; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.9em; margin-top: 10px;">
                         Ver anuncio completo →
                     </a>
