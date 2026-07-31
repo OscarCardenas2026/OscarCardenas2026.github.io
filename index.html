@@ -85,7 +85,8 @@
     <header class="hero" style="position:relative; height:100vh; overflow:hidden;">
         <div class="hero-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.2); z-index:1;"></div>
         <video class="hero-video" autoplay loop muted playsinline preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-            <source src="images/discos/logo-3d.webm" type="video/webm">
+            <!-- RUTA CORREGIDA: Se asume que el video está en images/ -->
+            <source src="images/logo-3d.webm" type="video/webm">
             Tu navegador no soporta video.
         </video>
         <div class="hero-content" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:white; max-width:700px; z-index:2;">
@@ -170,7 +171,7 @@
         <div class="container">
             <h2>Conciertos Recientes</h2>
             <div class="concert-highlight" style="background:#fafafa; padding:30px; border-radius:10px; border-left:5px solid #5a67d8; margin-top:20px;">
-                <h3 style="color:#5a67d8; margin-bottom:15px;">🎤 Recital en el Museo de Arte Moderno</h3>
+                <h3 style="color:#5a67d8; margin-bottom:15px;"> Recital en el Museo de Arte Moderno</h3>
                 <p><strong>Fecha:</strong> Miércoles 29 de julio de 2026, 19:00 hrs</p>
                 <p><strong>Lugar:</strong> Museo de Arte Moderno, Bosque de Chapultepec, CDMX</p>
                 <p><strong>Programa:</strong> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales.</p>
@@ -256,7 +257,7 @@
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts LIMPIOS (Sin stats.json) -->
     <script>
         // Animaciones al hacer scroll
         const sections = document.querySelectorAll('.section');
