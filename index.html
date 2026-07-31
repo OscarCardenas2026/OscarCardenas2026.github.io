@@ -80,7 +80,7 @@
         }
 
         /* === TARJETAS CON HOVER === */
-        .video-item, .disco-item { 
+        .video-item, .disco-item, .partituras-categoria { 
             background: #fff; 
             padding: 20px; 
             border-radius: 10px; 
@@ -88,7 +88,7 @@
             transition: all 0.3s ease;
             margin-bottom: 20px;
         }
-        .video-item:hover, .disco-item:hover { 
+        .video-item:hover, .disco-item:hover, .partituras-categoria:hover { 
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25); 
         }
@@ -108,6 +108,46 @@
             width: 100%; 
             height: 100%; 
             border: 0; 
+        }
+
+        /* === SECCIÓN PARTITURAS === */
+        .partituras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 25px;
+        }
+        .partituras-categoria h3 {
+            color: #5a67d8;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            border-bottom: 2px solid #e2e8f0;
+            padding-bottom: 8px;
+        }
+        .partituras-categoria ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .partituras-categoria li {
+            margin-bottom: 10px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .partituras-categoria li::before {
+            content: "🎼";
+            position: absolute;
+            left: 0;
+        }
+        .partituras-categoria a {
+            color: #333;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: 500;
+        }
+        .partituras-categoria a:hover {
+            color: #5a67d8;
+            text-decoration: underline;
         }
 
         /* === GALERÍA DE FOTOS === */
@@ -311,6 +351,7 @@
             .section { padding: 40px 0; }
             .hero-video { filter: blur(2px) brightness(0.7); }
             .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+            .partituras-grid { grid-template-columns: 1fr; }
             .lightbox-close { font-size: 2.5em; top: 15px; right: 20px; }
         }
     </style>
@@ -402,14 +443,49 @@
         </div>
     </section>
 
-    <section id="conciertos-recientes" class="section">
+    <!-- SECCIÓN PARTITURAS RESTAURADA -->
+    <section id="partituras" class="section">
+        <div class="container">
+            <h2>Partituras</h2>
+            <p style="text-align: center; color: #718096; margin-bottom: 20px; font-style: italic;">Descarga gratuita de mis composiciones y arreglos</p>
+            
+            <div class="partituras-grid">
+                <div class="partituras-categoria">
+                    <h3>🎼 Composiciones Originales</h3>
+                    <ul>
+                        <li><a href="partituras/composiciones/comp-cancion-de-cuna.pdf" target="_blank">Canción de Cuna</a></li>
+                        <li><a href="partituras/composiciones/comp-microsuite.pdf" target="_blank">Microsuite</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-1.pdf" target="_blank">Estudio No. 1</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-2.pdf" target="_blank">Estudio No. 2</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-3.pdf" target="_blank">Estudio No. 3</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-4.pdf" target="_blank">Estudio No. 4</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-5.pdf" target="_blank">Estudio No. 5</a></li>
+                    </ul>
+                </div>
+
+                <div class="partituras-categoria">
+                    <h3>🎵 Arreglos</h3>
+                    <ul>
+                        <li><a href="partituras/arreglos/arr-hotel-de-adan-duo.pdf" target="_blank">Hotel de Adán (Dúo)</a></li>
+                        <li><a href="partituras/arreglos/arr-agua-de-beber.pdf" target="_blank">Agua de Beber</a></li>
+                        <li><a href="partituras/arreglos/arr-morning.pdf" target="_blank">Morning</a></li>
+                        <li><a href="partituras/arreglos/arr-sex-in-a-pan.pdf" target="_blank">Sex in a Pan</a></li>
+                        <li><a href="partituras/arreglos/arr-baby-elephant-walk-a-tres.pdf" target="_blank">Baby Elephant Walk (a tres)</a></li>
+                        <li><a href="partituras/arreglos/arr-la-borrachita.pdf" target="_blank">La Borrachita</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="conciertos-recientes" class="section" style="background: #f8fafc;">
         <div class="container">
             <h2>Conciertos Recientes</h2>
             <div class="concert-highlight" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 900px; margin: 0 auto; border-left: 8px solid #5a67d8;">
                 <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Recital en el Museo de Arte Moderno</h3>
                 
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
+                    <span style="font-weight: bold; color: #333;"> Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
                     <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
@@ -424,7 +500,7 @@
                     Ver nota oficial de la Secretaría de Cultura
                 </a>
 
-                <!-- GALERÍA DE FOTOS DEL CONCIERTO (ORDEN: SOLO PRIMERO, CUARTETO DESPUÉS) -->
+                <!-- GALERÍA DE FOTOS DEL CONCIERTO -->
                 <div class="gallery-grid">
                     <div class="gallery-item" onclick="openLightbox('images/concierto-museo-solo.jpg')">
                         <img src="images/concierto-museo-solo.jpg" alt="Óscar Cárdenas - Recital en el Museo">
@@ -442,7 +518,7 @@
         </div>
     </section>
 
-    <section id="discos" class="section" style="background: #f8fafc;">
+    <section id="discos" class="section">
         <div class="container">
             <h2>Discografía</h2>
             <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
