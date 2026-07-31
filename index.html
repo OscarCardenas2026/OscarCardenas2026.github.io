@@ -1,336 +1,367 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Óscar Cárdenas - Compositor y Guitarrista</title>
-    <link rel="stylesheet" href="css/style.css">
-
-    <!-- GoatCounter -->
-    <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
-            async src="//gc.zgo.at/count.js"></script>
-
+    <title>ES PURiO JAZZ quarteto</title>
     <style>
-        /* === ESTILOS BASE === */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
-            background-attachment: fixed;
+            color: #000000; /* NEGRO ABSOLUTO para máxima visibilidad */
+            background: #ffffff; /* FONDO BLANCO SÓLIDO */
             min-height: 100vh;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* === ANIMACIONES === */
-        .section {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Hover */
-        .video-item,
-        .disco-item,
-        .partituras-categoria {
-            transition: all 0.3s ease;
-        }
-        .video-item:hover,
-        .disco-item:hover,
-        .partituras-categoria:hover {
-            transform: scale(1.02);
-            box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25);
-        }
-
-        /* Botón flotante */
-        .concert-button {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: linear-gradient(135deg, #5a67d8 0%, #7c3aed 100%);
-            color: white;
-            border: none;
-            padding: 18px 30px;
-            border-radius: 50px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            box-shadow: 0 8px 25px rgba(90, 103, 216, 0.4);
-            z-index: 1000;
-            animation: pulse 2s infinite;
-            transition: all 0.3s ease;
-        }
-        .concert-button:hover {
-            transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(90, 103, 216, 0.6);
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-
-        /* Modal */
-        .concert-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-        .concert-modal.active {
-            display: flex;
-        }
-        .concert-modal-content {
-            background: white;
-            padding: 30px;
-            border-radius: 12px;
-            max-width: 500px;
-            width: 90%;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             position: relative;
         }
-        .concert-modal-close {
-            position: absolute;
-            top: 10px; right: 20px;
-            font-size: 1.5em;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: #5a67d8;
-        }
+        .side-image-left { position: fixed; left: 0; top: 0; width: 300px; height: 100vh; background: url('fondo-izquierdo.jpg') center top no-repeat; background-size: cover; z-index: 0; filter: blur(2px); opacity: 0.30; }
+        .side-image-right { position: fixed; right: 0; top: 0; width: 300px; height: 100vh; background: url('fondo-derecho.jpg') center top no-repeat; background-size: cover; z-index: 0; filter: blur(2px); opacity: 0.30; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 20px; position: relative; z-index: 1; }
+        header { text-align: center; padding: 40px 20px; background: #ffffff; margin-bottom: 30px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); border-radius: 10px; }
+        .logo { max-width: 500px; margin: 0 auto 20px; }
+        .logo img { width: 100%; height: auto; }
+        .title-main { color: #1e3a8a; font-size: 2.5em; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 3px; font-weight: 800; }
+        .title-sub { color: #000000; font-size: 1.3em; font-style: italic; letter-spacing: 8px; text-align: center; display: block; font-weight: 600; }
+        section { background: #ffffff; /* FONDO BLANCO SÓLIDO */ padding: 30px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); position: relative; z-index: 1; }
+        h2 { color: #1e3a8a; font-size: 2em; margin-bottom: 20px; border-bottom: 2px solid #cbd5e0; padding-bottom: 10px; }
+        h3 { color: #4c1d95; font-size: 1.3em; margin: 20px 0 10px 0; }
+        p { margin-bottom: 10px; text-align: justify; font-size: 1em; color: #000000; }
+        .members-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 25px; margin-top: 20px; }
+        .member-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); display: flex; flex-direction: column; transition: all 0.3s ease; }
+        .member-card:hover { transform: translateY(-8px) scale(1.02); box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2); }
+        .member-photo { width: 100%; height: 450px; object-fit: cover; object-position: top center; background: #e2e8f0; cursor: pointer; transition: opacity 0.3s ease; }
+        .member-photo:hover { opacity: 0.85; }
+        .member-info { padding: 15px; flex: 1; }
+        .member-name { color: #1e3a8a; font-size: 1.2em; font-weight: 800; margin-bottom: 5px; text-align: center; cursor: pointer; transition: color 0.3s ease; }
+        .member-name:hover { color: #4c1d95; text-decoration: underline; }
+        .member-instrument { color: #4c1d95; text-align: center; font-style: italic; margin-bottom: 10px; font-weight: 700; font-size: 0.9em; }
+        .member-bio { text-align: justify; font-size: 0.9em; line-height: 1.5; max-height: 400px; overflow-y: auto; color: #000000; }
+        .discography-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px; }
+        .discography-item { background: #f7fafc; padding: 20px; border-radius: 8px; border-left: 4px solid #1e3a8a; transition: all 0.2s; }
+        .discography-item:hover { transform: translateX(5px); background: #edf2f7; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .discography-item h4 { color: #1e3a8a; margin-bottom: 10px; font-size: 1.1em; }
+        .discography-item a { color: #4c1d95; text-decoration: none; display: block; margin: 8px 0; font-size: 0.9em; word-break: break-all; font-weight: 600; }
+        .discography-item a:hover { text-decoration: underline; color: #1e3a8a; }
+        .video-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; margin-top: 20px; }
+        .video-item { background: #f7fafc; padding: 0; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); transition: all 0.3s ease; }
+        .video-item:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(30, 58, 138, 0.2); }
+        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; }
+        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-info { padding: 18px 20px; }
+        .video-info h4 { color: #1e3a8a; margin-bottom: 8px; font-size: 1.15em; }
+        .video-info p { color: #000000; font-size: 0.95em; margin: 0; font-style: italic; font-weight: 600; }
+        .social-links { text-align: center; padding: 20px; background: #f7fafc; border-radius: 10px; margin-top: 20px; }
+        .social-links a { color: #1e3a8a; text-decoration: none; font-size: 1.2em; font-weight: bold; }
+        .social-links a:hover { color: #4c1d95; text-decoration: underline; }
+        .highlight { background: #f7fafc; padding: 15px; border-left: 4px solid #1e3a8a; margin: 15px 0; border-radius: 5px; }
+        footer { text-align: center; padding: 20px; background: #ffffff; color: #000000; border-radius: 10px; margin-top: 20px; position: relative; z-index: 1; border-top: 1px solid #e2e8f0; }
+        
+        .concert-button { position: fixed; bottom: 30px; right: 30px; background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%); color: white; border: none; padding: 18px 30px; border-radius: 50px; font-size: 1.1em; font-weight: bold; cursor: pointer; box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4); z-index: 1000; transition: all 0.3s ease; animation: pulse 2s infinite; display: flex; align-items: center; gap: 10px; font-family: inherit; }
+        .concert-button:hover { transform: scale(1.1); box-shadow: 0 12px 35px rgba(76, 29, 149, 0.6); }
+        .concert-button::before { content: "🎵"; font-size: 1.3em; }
+        @keyframes pulse { 0%, 100% { box-shadow: 0 8px 25px rgba(30, 58, 138, 0.4); } 50% { box-shadow: 0 8px 35px rgba(76, 29, 149, 0.7); } }
 
-        /* Concieros destacados */
-        .concert-highlight {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
+        .modal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 2000; justify-content: center; align-items: center; animation: fadeIn 0.3s ease; }
+        .modal.active { display: flex; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .modal-content { background: white; padding: 40px; border-radius: 15px; max-width: 650px; width: 90%; max-height: 90vh; overflow-y: auto; box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3); position: relative; animation: slideIn 0.3s ease; }
+        @keyframes slideIn { from { transform: translateY(-50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        .modal-close { position: absolute; top: 15px; right: 20px; font-size: 2em; color: #000000; cursor: pointer; background: none; border: none; transition: color 0.2s; font-family: inherit; }
+        .modal-close:hover { color: #1e3a8a; }
+        .modal-title { color: #1e3a8a; font-size: 2em; margin-bottom: 30px; text-align: center; border-bottom: 3px solid #4c1d95; padding-bottom: 15px; }
+        .concert-list { list-style: none; }
+        .concert-item { background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%); padding: 20px; margin-bottom: 15px; border-radius: 10px; border-left: 5px solid #1e3a8a; transition: all 0.3s ease; }
+        .concert-item:hover { transform: translateX(10px); box-shadow: 0 5px 15px rgba(30, 58, 138, 0.2); border-left-color: #4c1d95; }
+        .concert-date { color: #4c1d95; font-size: 1.3em; font-weight: 800; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .concert-date::before { content: "📅"; font-size: 1.2em; }
+        .concert-venue { color: #1e3a8a; font-size: 1.1em; margin-bottom: 5px; font-weight: 700; }
+        .concert-details { color: #000000; font-size: 1em; line-height: 1.5; font-weight: 500; }
+        
+        .concert-highlight { background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%); color: white !important; padding: 25px; border-radius: 10px; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(30, 58, 138, 0.3); animation: highlightPulse 2s infinite; }
+        @keyframes highlightPulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.02); } }
+        .concert-highlight img { width: 100%; max-width: 500px; border-radius: 8px; display: block; margin: 0 auto 20px; box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3); transition: transform 0.3s ease; cursor: pointer; }
+        .concert-highlight img:hover { transform: scale(1.02); }
+        .concert-highlight .concert-date { color: white !important; font-size: 1.4em; font-weight: 800; margin-bottom: 10px; }
+        .concert-highlight .concert-venue { color: white !important; font-size: 1.15em; margin-bottom: 8px; font-weight: 700; }
+        .concert-highlight .concert-details { color: rgba(255, 255, 255, 1) !important; font-size: 1em; margin-bottom: 15px; font-weight: 500; }
+        .concert-highlight .concert-link { display: inline-block; background: rgba(255, 255, 255, 0.2); color: white !important; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.9em; transition: all 0.3s ease; border: 2px solid rgba(255, 255, 255, 0.5); }
+        .concert-highlight .concert-link:hover { background: rgba(255, 255, 255, 0.3); transform: translateY(-2px); }
+        
+        .qr-modal-container {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            display: inline-block;
+            margin: 15px auto;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
-        .concert-highlight.visible {
-            opacity: 1;
-            transform: translateY(0);
+        .qr-modal-container img {
+            width: 180px;
+            height: 180px;
+            display: block;
         }
-
-        /* Contador */
-        .visitor-counter {
+        .qr-modal-text {
+            color: white !important;
             text-align: center;
-            margin: 1.5rem 0;
+            font-size: 0.95em;
+            font-weight: 600;
+            margin-top: 10px;
+            font-style: italic;
         }
-        #visit-count {
-            font-weight: bold;
-            color: #c9a961;
-            font-size: 1.3em;
+        
+        .no-concerts { text-align: center; padding: 20px; color: #000000; font-style: italic; background: #f7fafc; border-radius: 8px; font-weight: 600; }
+
+        @media (max-width: 768px) {
+            .members-grid { grid-template-columns: 1fr; }
+            .title-main { font-size: 1.8em; }
+            .title-sub { font-size: 1em; letter-spacing: 5px; }
+            h2 { font-size: 1.5em; }
+            section { padding: 20px; }
+            .side-image-left, .side-image-right { display: none; }
+            .concert-button { bottom: 20px; right: 20px; padding: 15px 20px; font-size: 1em; }
+            .modal-content { padding: 25px; }
+            .modal-title { font-size: 1.5em; }
+            .concert-highlight img { max-width: 100%; }
         }
     </style>
 </head>
 <body>
+    <div class="side-image-left"></div>
+    <div class="side-image-right"></div>
 
-    <!-- Hero Section con Video del Logo -->
-    <header class="hero" style="position:relative; height:100vh; overflow:hidden;">
-        <div class="hero-overlay" style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.2); z-index:1;"></div>
-        <video class="hero-video" autoplay loop muted playsinline preload="auto" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; z-index:0;">
-            <source src="images/discos/logo-3d.webm" type="video/webm">
-            Tu navegador no soporta video.
-        </video>
-        <div class="hero-content" style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); text-align:center; color:white; max-width:700px; z-index:2;">
-            <h1 style="font-size:2.8em; margin-bottom:10px;">ÓSCAR CÁRDENAS</h1>
-            <p class="subtitle" style="font-style:italic; font-size:1.3em; margin-bottom:20px;">Compositor y Guitarrista Mexicano</p>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <img src="logo.png" alt="ES PURiO JAZZ quarteto Logo">
+            </div>
+            <h1 class="title-main">ES PURiO JAZZ</h1>
+            <span class="title-sub">quarteto</span>
+        </header>
+
+        <section id="about">
+            <h2>Sobre el Cuarteto</h2>
+            <p>Esta agrupación musical está conformada por los músicos mexicanos <strong>Mireya González</strong> al piano, <strong>Óscar Cárdenas</strong> en la guitarra, <strong>Bogdan Chávez</strong> en la batería y <strong>Víctor Flores</strong> en el contrabajo. Todos ellos con una gran trayectoria como músicos profesionales.</p>
             
-            <blockquote style="max-width:600px; margin:20px auto; padding:15px; background:rgba(255,255,255,0.15); border-left:4px solid #5a67d8; font-style:italic;">
-                "...la única forma verdaderamente completa de acercarse a la música es escuchándola."  
-                <cite style="display:block; text-align:right; font-weight:bold; margin-top:5px;">— Juan Arturo Brennan</cite>
-            </blockquote>
-
-            <div class="manifiesto" style="background:rgba(255,255,255,0.15); padding:20px; border-radius:8px; margin:20px 0;">
-                <h2 style="color:#5a67d8; margin-bottom:10px;">Mi compromiso como artista:</h2>
-                <p>La expresión musical viva es una de las experiencias más ricas que nos permite sentir toda una gama de sensaciones, desde lo puramente hedonista hasta la más sublime espiritualidad.</p>
-                <p>Es una necesidad expresar todo el abanico de sentimientos inmersos en cada obra, llevando en cada presentación la herencia cultural que nos ha determinado como sociedad. El único hilo conductor de mi diversidad musical es el compromiso de compartir contigo la pasión por la que vivo: <strong>hacer música</strong>.</p>
+            <div class="highlight">
+                <p><strong>ES PURiO JAZZ quarteto</strong> toma el nombre de la aparente dicotomía existente entre las expresiones artísticas de la música clásica y el jazz así como entre los músicos que las producen. Este juego de palabras que forma el nombre de la agrupación, cobra sentido al hacer alusión a la manera de combinar los elementos de la música clásica y del jazz en un todo orgánico.</p>
             </div>
 
-            <a href="#videos" class="btn" style="background:#5a67d8; color:white; padding:12px 30px; text-decoration:none; border-radius:6px; display:inline-block; margin-top:15px;">Explorar mi música</a>
-        </div>
-    </header>
+            <p>Hay numerosos ejemplos que constatan que cada vez están más cercanas ambas particulares maneras de organizar a los sonidos de estos géneros, como la primera obra seleccionada para el repertorio de ES PURiO JAZZ quarteto, el <em>Concerto for Classical Guitar and Piano Jazz</em>, del compositor francés Claude Bolling.</p>
 
-    <!-- Obras en Video -->
-    <section id="videos" class="section">
-        <div class="container">
-            <h2>Obras en Video</h2>
-            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 20px;">
-                <div class="video-item" style="background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:180px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <span style="color:#718096;">🎥 Zapateado</span>
+            <h3>Trayectoria</h3>
+            <p>ES PURiO JAZZ quarteto ha ofrecido conciertos en diversas salas de la Ciudad de México, tales como la Sala Chopin, la sala Hermilio Novelo del Conjunto Cultural Ollin Yoliztli, en el Teatro Ángela Peralta de San Miguel de Allende, Gto., en la Mina Prehispánica de Taxco, Gro., y para la grabación de un video, en la sala Nezahualcóyotl del Centro Cultural Universitario y en el Lunario.</p>
+
+            <h3>Producciones Discográficas</h3>
+            <p>Tiene esta agrupación dos producciones discográficas. La primera <strong>"ES PURiO JAZZ"</strong>, contiene la obra mencionada de Claude Bolling y la segunda <strong>"Teine"</strong>, con una selección de obras del género del jazz además de tres obras originales, que ya se puede adquirir en tiendas y conciertos.</p>
+
+            <div class="social-links">
+                <p><strong>Síguenos en:</strong></p>
+                <a href="https://facebook.com" target="_blank">Facebook: ES PURiO JAZZ quarteto</a>
+            </div>
+        </section>
+
+        <section id="qr-concierto" style="background: linear-gradient(135deg, #1e3a8a 0%, #4c1d95 100%); padding: 40px 20px; text-align: center; margin: 30px 0; border-radius: 10px; box-shadow: 0 10px 30px rgba(30, 58, 138, 0.2);">
+            <h2 style="color: white; margin-bottom: 15px; font-size: 1.8em; font-weight: 800;">📱 Escanea el QR del Concierto</h2>
+            <p style="color: white; margin-bottom: 25px; font-size: 1.1em; text-align: center; font-weight: 600;">
+                <strong>Miércoles 29 de Julio - Museo de Arte Moderno</strong><br>
+                19:00 hrs - Entrada libre - Cupo limitado
+            </p>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=250x250&data=https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" 
+                 alt="Escanea para ver el programa del concierto" 
+                 style="width: 250px; height: 250px; display: block; margin: 0 auto; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.3); background: white; padding: 10px;">
+            <p style="color: white; margin-top: 20px; font-size: 1em; font-style: italic; font-weight: 600;">
+                Escanea para ver el programa completo
+            </p>
+        </section>
+
+        <section id="discography">
+            <h2>Videos y Discografía</h2>
+            <h3>Videos</h3>
+            <div class="video-grid">
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/eRG4sbXlM6Q?rel=0&modestbranding=1" title="Video ES PURiO JAZZ 1" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                    <h3>Zapateado</h3>
-                    <p>Joaquín Rodrigo</p>
+                    <div class="video-info">
+                        <h4>Africaine de Claude Bolling</h4>
+                        <p>Sala Nezahualcóyotl, CDMX</p>
+                    </div>
                 </div>
-                <div class="video-item" style="background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:180px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <span style="color:#718096;">🎥 Bransle de la Torche</span>
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/zGqH7iy3jQw?rel=0&modestbranding=1" title="Video ES PURiO JAZZ 2" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                    <h3>Bransle de la Torche</h3>
-                    <p>Michael Praetorius</p>
+                    <div class="video-info">
+                        <h4>No Messin' de Greg Carmichael</h4>
+                        <p>Antiguo Colegio de San Ildefonso</p>
+                    </div>
                 </div>
-                <div class="video-item" style="background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:180px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <span style="color:#718096;">🎥 Guajolota</span>
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/c4NYX7ZzOlg?rel=0&modestbranding=1" title="Video ES PURiO JAZZ 3" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                     </div>
-                    <h3>Guajolota</h3>
-                    <p>Óscar Cárdenas (Obra propia)</p>
-                </div>
-                <div class="video-item" style="background:#fff; padding:15px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:180px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <span style="color:#718096;">🎥 Cuarteto No. 3</span>
+                    <div class="video-info">
+                        <h4>Full House de Wes Montgomery</h4>
+                        <p>Teatro Ángela Peralta, San Miguel de Allende</p>
                     </div>
-                    <h3>Cuarteto No. 3</h3>
-                    <p>ES PURiO JAZZ quarteto</p>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Biografía -->
-    <section id="biografia" class="section section-alt" style="background:#f8fafc; padding:40px 0;">
-        <div class="container">
-            <h2>Biografía</h2>
-            <div style="line-height:1.7; font-size:0.95em;">
-                <p><strong>ÓSCAR CÁRDENAS</strong> | <em>Guitarrista y Compositor</em></p>
-                <p>Originario de la Ciudad de Chihuahua, Óscar Cárdenas inició su acercamiento a la guitarra de la mano de su padre... [tu texto completo]</p>
+            <h3 style="margin-top: 40px;"> CD - "ES PURiO JAZZ"</h3>
+            <div class="discography-grid">
+                <div class="discography-item">
+                    <h4>Spotify</h4>
+                    <a href="https://play.spotify.com/artist/5SOdPCfTYz8RkD6n7bL9iI?play=true&utm_source=open.spotify.com&utm_medium=open" target="_blank">Escuchar en Spotify</a>
+                </div>
+                <div class="discography-item">
+                    <h4>Amazon</h4>
+                    <a href="http://www.amazon.com/s/ref=nb_sb_ss_fb_0_9?url=search-alias%3Ddigital-music&field-keywords=es+purio+jazz&sprefix=es+purio+%2Cpopular%2C263" target="_blank">Comprar en Amazon</a>
+                </div>
             </div>
-        </div>
-    </section>
 
-    <!-- Conciertos Realizados -->
-    <section id="conciertos-realizados" class="section">
-        <div class="container">
-            <h2>Conciertos Recientes</h2>
-            <div class="concert-highlight" style="background:#fafafa; padding:30px; border-radius:10px; border-left:5px solid #5a67d8; margin-top:20px;">
-                <h3 style="color:#5a67d8; margin-bottom:15px;">🎤 Recital en el Museo de Arte Moderno</h3>
-                <p><strong>Fecha:</strong> Miércoles 29 de julio de 2026, 19:00 hrs</p>
-                <p><strong>Lugar:</strong> Museo de Arte Moderno, Bosque de Chapultepec, CDMX</p>
-                <p><strong>Programa:</strong> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales.</p>
-                <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" style="display:inline-block; background:#5a67d8; color:white; padding:8px 16px; border-radius:4px; margin-top:15px; text-decoration:none;">📜 Ver programa completo</a>
+            <h3 style="margin-top: 30px;">💿 CD - "Teine"</h3>
+            <div class="discography-grid">
+                <div class="discography-item">
+                    <h4>Spotify</h4>
+                    <a href="https://open.spotify.com/intl-es/album/42AC0vaORiYDI0PywZw26s" target="_blank">Escuchar en Spotify</a>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Discografía -->
-    <section id="discos" class="section section-alt" style="background:#f8fafc; padding:40px 0;">
-        <div class="container">
-            <h2>Discografía</h2>
-            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; margin-top:20px;">
-                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <img src="images/discos/disco1.jpg" alt="Óscar Cárdenas en concierto" style="max-width:100%; max-height:100%;">
+        <section id="members">
+            <h2>Integrantes</h2>
+            <div class="members-grid">
+                
+                <!-- ÓSCAR CÁRDENAS (CON ENLACE A TU PÁGINA PERSONAL) -->
+                <div class="member-card">
+                    <a href="https://oscarcardenas2026.github.io/" target="_blank" style="text-decoration: none; color: inherit; display: block;">
+                        <img src="oscar-cardenas.jpg" alt="Óscar Cárdenas" class="member-photo">
+                        <div class="member-name">ÓSCAR CÁRDENAS</div>
+                    </a>
+                    <div class="member-info">
+                        <div class="member-instrument">Guitarra</div>
+                        <div class="member-bio">
+                            <p>Es compositor y guitarrista mexicano, titulado de la ahora Facultad de Música de la UNAM. Es creador de música de cámara que incluye a la guitarra como solista o como parte de alguna agrupación, además de otros instrumentos, como el cuarteto de saxofones, piano, orquesta y la dotación instrumental de ES PURiO JAZZ quarteto.</p>
+                            <p>Como guitarrista tiene premios nacionales, como el primer lugar en el XIX Concurso Nacional de Guitarra en Paracho, Mich., con una mención otorgada por el compositor mexicano Julio César Oliva a la mejor interpretación de su obra.</p>
+                            <p>Se ha presentado en las salas más importantes de la Ciudad de México así como del interior de la república, además de las Ciudades de Belice y Belmopán.</p>
+                            <p>Ha tomado clases magistrales con Iván Rijos, Alirio Díaz, Leo Brouwer, Franz Bungarten, Guillermo González, Julio César Oliva, por mencionar algunos. Tiene dos producciones discográficas independientes, "Óscar Cárdenas en Concierto" que incluye algunas obras de su autoría y obras del repertorio de la guitarra clásica y "Frente al Espejo" con obras exclusivamente de su autoría.</p>
+                        </div>
                     </div>
-                    <h3>Óscar Cárdenas en concierto</h3>
-                    <p>2001</p>
-                    <p>Primera grabación como solista con obras propias</p>
                 </div>
-                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <img src="images/discos/disco-bolling-2010.jpg" alt="ES PURiO JAZZ - Homenaje a Claude Bolling" style="max-width:100%; max-height:100%;">
-                    </div>
-                    <h3>ES PURiO JAZZ - Claude Bolling</h3>
-                    <p>2010</p>
-                    <p>Concerto for Classic Guitar and Jazz Piano Trio</p>
-                </div>
-                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <img src="images/discos/disco-teine-2018.jpg" alt="ES PURiO JAZZ Quarteto - Teine" style="max-width:100%; max-height:100%;">
-                    </div>
-                    <h3>Teine</h3>
-                    <p>2018</p>
-                    <p>Arreglos de jazz y obras originales del cuarteto</p>
-                </div>
-                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
-                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
-                        <img src="images/discos/disco-frente-al-espejo-2025.jpg" alt="Frente al Espejo" style="max-width:100%; max-height:100%;">
-                    </div>
-                    <h3>Frente al Espejo</h3>
-                    <p>2025</p>
-                    <p>Álbum monográfico con obras propias para guitarra sola, voz, flauta y piano</p>
-                </div>
-            </div>
-        </div>
-    </section>
 
-    <!-- Footer -->
-    <footer class="footer" style="background:#1a202c; color:white; padding:30px 0; text-align:center;">
-        <div class="container">
-            <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
-            <div class="visitor-counter">
-                <p>👁️ Visitas este mes: <span id="visit-count">—</span></p>
-            </div>
-            <div style="margin-top:15px;">
-                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color:#c9a961; margin:0 12px;">YouTube</a>
-                <a href="mailto:oecp@protonmail.com" style="color:#c9a961;">Contacto</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Botón flotante -->
-    <button class="concert-button" onclick="openConcertModal()">Próximos Conciertos</button>
-
-    <!-- Modal -->
-    <div id="concertModal" class="concert-modal">
-        <div class="concert-modal-content">
-            <button class="concert-modal-close" onclick="closeConcertModal()">&times;</button>
-            <h2 style="color:#5a67d8;">🎵 Agenda de Conciertos</h2>
-            <div style="margin:20px 0;">
-                <div style="background:#f7fafc; padding:15px; border-radius:8px; margin-bottom:15px;">
-                    <div style="font-weight:bold; color:#5a67d8;">📅 Agosto 2026 (por confirmar)</div>
-                    <div style="color:#718096;">CDMX / Evento por definir</div>
+                <!-- MIREYA GONZÁLEZ -->
+                <div class="member-card">
+                    <img src="mireya-gonzalez.jpg" alt="Mireya González" class="member-photo">
+                    <div class="member-info">
+                        <div class="member-name">MIREYA GONZÁLEZ</div>
+                        <div class="member-instrument">Piano</div>
+                        <div class="member-bio">
+                            <p>Desde pequeña, Mireya manifestó un talento natural para la música, motivada por un ambiente musical familiar, que la llevó a decidir muy pronto sus objetivos de vida: estudiar música.</p>
+                            <p>Con una voluntad férrea y con un objetivo claro, avanzó en sus estudios rápidamente, desarrollando sensibilidad y técnica orientadas por sus primeros profesores Eduardo Caballero y Saúl Rocha, iniciando con órgano melódico y especializándose en piano.</p>
+                            <p>Al ingresar a la ahora Facultad de Música de la UNAM, encontró la dirección, la motivación y el apoyo de la Maestra Ma. Pilar Vidal Álvarez, quien influyó de manera determinante en su formación profesional, hasta obtener el grado de licenciada en piano.</p>
+                            <p>Se ha presentado en conciertos como solista en salas como Ollin Yoliztli, Carlos Chávez, Sala Xochipilli, Sala Huehuecóyotl, entre otras y con distintas agrupaciones, en diversos foros.</p>
+                        </div>
+                    </div>
                 </div>
-                <div style="background:#f7fafc; padding:15px; border-radius:8px;">
-                    <div style="font-weight:bold; color:#5a67d8;">📅 Miércoles 29 de julio de 2026</div>
-                    <div style="color:#718096;">Museo de Arte Moderno, CDMX</div>
-                    <div style="margin-top:8px; font-size:0.9em;">Noche de Museos – Entrada libre</div>
+
+                <!-- BOGDAN CHÁVEZ -->
+                <div class="member-card">
+                    <img src="bogdan-chavez.jpg" alt="Bogdan Chávez" class="member-photo">
+                    <div class="member-info">
+                        <div class="member-name">BOGDAN CHÁVEZ</div>
+                        <div class="member-instrument">Batería</div>
+                        <div class="member-bio">
+                            <p>Baterista y productor mexicano, comenzó su carrera musical a temprana edad. Cursó sus primeros estudios musicales en la Escuela de Iniciación del INBA, posteriormente tomó clases con el profesor Jorge González y fue alumno del Taller de Jazz, impartido en el Escuela Superior de Música.</p>
+                            <p>Continuó su formación con miras a perfeccionar su técnica, bajo la tutela de diversos bateristas, tales como Horacio "el negro" Hernández y Ruy López Nussa, a quien conoció en una gira en la Ciudad de la Habana, Cuba.</p>
+                            <p>Como músico profesional se ha mantenido fuertemente activo, participando en distintos proyectos de música popular, ofreciendo giras nacionales e internacionales, así como múltiples obras teatrales. Ha grabado música para películas, jingles y más de 30 discos, además de dar clases particulares y en la Escuela Sala Chopin desde 2005.</p>
+                            <p>Incursionó en la producción musical con su estudio de grabación BOGDRUM, que ya cuenta con un catálogo considerable, incluyendo el disco de ES PURiO JAZZ quarteto, agrupación de la cual es fundador desde 2010.</p>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- VÍCTOR FLORES -->
+                <div class="member-card">
+                    <img src="victor-flores.jpg" alt="Víctor Flores" class="member-photo">
+                    <div class="member-info">
+                        <div class="member-name">VÍCTOR FLORES</div>
+                        <div class="member-instrument">Contrabajo</div>
+                        <div class="member-bio">
+                            <p>Contrabajista mexicano, realizó estudios en la ahora Facultad de Música de la UNAM y en la Escuela de Perfeccionamiento Vida y Movimiento del Conjunto Cultural Ollin Yoliztli. Ha participado en cursos y clases magistrales impartidas por maestros como: Eugene Levinson, John Shaeffer, Mijail Stadiniscki, Lucy van Dale, entre otros.</p>
+                            <p>En 1992 gana como solista, la medalla Cynthia Woods dentro del Texas Music Festival. La embajada de Austria, en conjunto con la Academia Medalla Mozart A. C., le otorgan la Medalla Mozart en 2009.</p>
+                            <p>Ha ganado por concurso los puestos de contrabajista principal en la Orquesta de Cámara de Bellas Artes y en la Orquesta Filarmónica de la UNAM, de coprincipal en la Orquesta Filarmónica de la Ciudad de México, además de ser invitado como principal en la orquesta Sinfónica de Minería y de la Orquesta del Festival Mozart-Haydn.</p>
+                            <p>Ha sido invitado como solista en la Orquestas más prestigiadas del país. Víctor Flores es considerado como uno de los contrabajistas mexicanos más importantes de Latinoamérica por interpretar desde música Renacentista hasta música nueva y presentarse exitosamente en los principales foros y festivales de México y del extranjero.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <footer>
+            <div style="text-align: center; margin-bottom: 20px;">
+                <a href="https://info.flagcounter.com/45Sr">
+                    <img src="https://s01.flagcounter.com/count/45Sr/bg_F7FAFC/txt_1E3A8A/border_CBD5E0/columns_5/maxflags_12/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0">
+                </a>
+            </div>
+            <p>&copy; 2026 ES PURiO JAZZ quarteto. Todos los derechos reservados.</p>
+            <p>Música que fusiona lo clásico con el jazz</p>
+        </footer>
+    </div>
+
+    <button class="concert-button" onclick="openConcertModal()">
+        Próximos Conciertos
+    </button>
+
+    <div id="concertModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeConcertModal()">&times;</button>
+            <h2 class="modal-title"> Próximos Conciertos</h2>
+            
+            <div class="concert-highlight">
+                <a href="https://view.flodesk.com/emails/6a2996201b7c0f42f6c84c88" target="_blank">
+                    <img src="concierto-museo.jpg" alt="Concierto ES PURiO JAZZ quarteto - Miércoles 29 de julio">
+                </a>
+                <div class="concert-date">Miércoles 29 de Julio de 2026, 19:00 hrs</div>
+                <div class="concert-venue">Museo de Arte Moderno, CDMX</div>
+                <div class="concert-details">Noche de Museos - Entrada libre<br>Fusión de barroco y jazz</div>
+                
+                <div style="text-align: center; margin: 20px 0;">
+                    <div class="qr-modal-container">
+                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" 
+                             alt="QR del programa del concierto">
+                    </div>
+                    <p class="qr-modal-text"> Escanea para ver el programa completo</p>
+                </div>
+                
+                <a href="https://view.flodesk.com/emails/6a2996201b7c0f42f6c84c88" target="_blank" class="concert-link">
+                    Ver anuncio completo →
+                </a>
+            </div>
+
+            <ul class="concert-list"></ul>
+
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 2px solid #e2e8f0;">
+                <p style="color: #000000; font-size: 0.9em; font-weight: 600;">Para más información y reservas, contáctanos a través de nuestras redes sociales.</p>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
-        // Leer stats.json
-        fetch('stats.json')
-            .then(r => r.json())
-            .then(data => document.getElementById('visit-count').textContent = data.monthly_visits || 54)
-            .catch(() => document.getElementById('visit-count').textContent = '54');
-
-        // Animaciones al hacer scroll
-        const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
-        }, { threshold: 0.1 });
-        sections.forEach(s => observer.observe(s));
-
-        // Modal
         function openConcertModal() {
             document.getElementById('concertModal').classList.add('active');
+            document.body.style.overflow = 'hidden';
         }
         function closeConcertModal() {
             document.getElementById('concertModal').classList.remove('active');
+            document.body.style.overflow = 'auto';
         }
-        window.onclick = e => e.target.id === 'concertModal' && closeConcertModal();
-        document.addEventListener('keydown', e => e.key === 'Escape' && closeConcertModal());
+        window.onclick = function(event) {
+            const modal = document.getElementById('concertModal');
+            if (event.target == modal) { closeConcertModal(); }
+        }
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') { closeConcertModal(); }
+        });
     </script>
 </body>
 </html>
