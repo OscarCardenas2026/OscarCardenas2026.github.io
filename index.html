@@ -6,7 +6,7 @@
     <title>Óscar Cárdenas - Compositor y Guitarrista</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- GoatCounter: Estadísticas privadas detalladas -->
+    <!-- GoatCounter -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -23,7 +23,7 @@
 
         .hero {
             position: relative; 
-            height: 100vh; 
+            min-height: 100vh; 
             width: 100%; 
             overflow: hidden;
             display: flex; 
@@ -31,6 +31,7 @@
             justify-content: center;
             color: white; 
             text-align: center;
+            padding: 100px 20px 60px;
         }
         .hero-video {
             position: absolute; 
@@ -57,7 +58,7 @@
             position: relative; 
             z-index: 1; 
             max-width: 800px; 
-            padding: 20px; 
+            width: 100%;
         }
 
         .section {
@@ -84,6 +85,7 @@
             border-radius: 10px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
             transition: transform 0.3s;
+            margin-bottom: 20px;
         }
         .video-item:hover, .disco-item:hover { 
             transform: translateY(-5px); 
@@ -115,7 +117,7 @@
             border: none; 
             padding: 15px 25px; 
             border-radius: 50px;
-            font-size: 1em; 
+            font-size: 0.95em; 
             font-weight: bold; 
             cursor: pointer;
             box-shadow: 0 8px 25px rgba(90, 103, 216, 0.4); 
@@ -173,6 +175,7 @@
             vertical-align: middle; 
             margin-left: 5px; 
             border: 0; 
+            display: inline-block;
         }
         
         p { 
@@ -185,26 +188,20 @@
             text-align: justify; 
         }
 
+        /* Footer con espacio extra para el botón flotante */
+        footer {
+            padding-bottom: 120px;
+        }
+
         /* === MEDIA QUERIES PARA MÓVIL === */
         @media (max-width: 768px) {
             .hero {
-                height: auto;
+                padding: 120px 15px 60px;
                 min-height: 100vh;
-                padding: 80px 20px;
-            }
-            
-            .hero-video {
-                display: none; /* Ocultar video en móvil para mejor rendimiento */
-            }
-            
-            .hero-content {
-                position: static;
-                transform: none;
-                max-width: 100%;
             }
             
             .hero-content h1 {
-                font-size: 2rem !important;
+                font-size: 2.2rem !important;
             }
             
             .hero-content .subtitle {
@@ -215,15 +212,15 @@
                 bottom: 20px;
                 right: 20px;
                 padding: 12px 20px;
-                font-size: 0.9em;
-            }
-            
-            footer {
-                padding-bottom: 100px; /* Espacio para el botón flotante */
+                font-size: 0.85em;
             }
             
             .section {
                 padding: 40px 0;
+            }
+            
+            .video-container {
+                margin-bottom: 10px;
             }
         }
     </style>
@@ -232,8 +229,11 @@
 
     <header class="hero">
         <div class="hero-overlay"></div>
-        <video class="hero-video" autoplay loop muted playsinline preload="auto">
+        <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="">
             <source src="images/logo-3d.webm" type="video/webm">
+            <!-- Fallback para navegadores que no soportan webm -->
+            <source src="images/logo-3d.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
         </video>
         
         <div class="hero-content">
@@ -324,7 +324,7 @@
                     <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
+                    <span style="font-weight: bold; color: #333;"> Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
                 </div>
                 <div style="margin-bottom: 25px;">
                     <span style="font-weight: bold; color: #333;">🎵 Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
@@ -379,19 +379,19 @@
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
             <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
-                <p style="color: white; display: inline-block;">
-                    ️ Visitas totales: 
-                    <a href="http://s01.flagcounter.com/more/XaxB" target="_blank" style="text-decoration: none;">
+                <p style="color: white;">
+                    👁️ Visitas totales: 
+                    <a href="https://info.flagcounter.com/XaxB" target="_blank" style="display: inline-block; margin-left: 10px;">
                         <img src="https://s01.flagcounter.com/count2/XaxB/bg_1A202C/txt_C9A961/border_1A202C/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" 
-                             alt="Contador de visitas" 
-                             style="border:0; vertical-align: middle; margin-left: 5px;">
+                             alt="Flag Counter" 
+                             style="border: 0; display: inline-block;">
                     </a>
                 </p>
             </div>
             
             <div style="margin-top: 20px;">
-                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color: #c9a961; margin: 0 15px; text-decoration: none;">YouTube</a>
-                <a href="mailto:oecp@protonmail.com" style="color: #c9a961; text-decoration: none;">Contacto</a>
+                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color: #c9a961; margin: 0 15px; text-decoration: none; display: inline-block; padding: 10px 0;">YouTube</a>
+                <a href="mailto:oecp@protonmail.com" style="color: #c9a961; text-decoration: none; display: inline-block; padding: 10px 0;">Contacto</a>
             </div>
         </div>
     </footer>
