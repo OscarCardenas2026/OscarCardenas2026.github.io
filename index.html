@@ -103,12 +103,11 @@
 
         /* Contador */
         .visitor-counter { text-align: center; margin: 1.5rem 0; }
-        .visitor-counter img { vertical-align: middle; margin-left: 0.5rem; border: 0; }
-
+        
         /* === CORRECCIÓN DE TEXTO JUSTIFICADO === */
         p { text-align: justify; }
         
-        /* Ajuste específico para el manifiesto en el hero para que no se vea forzado en móvil */
+        /* Ajuste específico para el manifiesto en el hero */
         .hero-content p { text-align: center; } 
         .hero-content .manifiesto-text { text-align: justify; }
     </style>
@@ -123,7 +122,7 @@
         </video>
         
         <div class="hero-content">
-            <!-- CORRECCIÓN: Título adaptable con clamp() -->
+            <!-- Título adaptable con clamp() -->
             <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.2;">ÓSCAR CÁRDENAS</h1>
             <p style="font-style: italic; font-size: clamp(1rem, 3vw, 1.5em); margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Compositor y Guitarrista Mexicano</p>
             
@@ -214,10 +213,10 @@
                     <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;"> Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
+                    <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
                 </div>
                 <div style="margin-bottom: 25px;">
-                    <span style="font-weight: bold; color: #333;"> Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
+                    <span style="font-weight: bold; color: #333;">🎵 Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
                 </div>
 
                 <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" 
@@ -265,16 +264,18 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer con Contador en Tiempo Real -->
     <footer style="background: #1a202c; color: white; padding: 40px 0; text-align: center;">
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
-            <div class="visitor-counter">
-                <p style="margin: 1rem 0;">
+            
+            <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
+                <p>
                     👁️ Visitas totales: 
-                    <img src="https://oscar-cardenas.goatcounter.com/count.svg" alt="Contador">
+                    <span id="gc-count" style="font-weight: bold; color: #c9a961; margin-left: 5px;">...</span>
                 </p>
             </div>
+            
             <div style="margin-top: 20px;">
                 <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color: #c9a961; margin: 0 15px; text-decoration: none;">YouTube</a>
                 <a href="mailto:oecp@protonmail.com" style="color: #c9a961; text-decoration: none;">Contacto</a>
@@ -314,6 +315,27 @@
         }
         window.onclick = e => e.target.id === 'concertModal' && closeConcertModal();
         document.addEventListener('keydown', e => e.key === 'Escape' && closeConcertModal());
+
+        // Script para obtener el contador de GoatCounter en tiempo real
+        async function updateVisitorCount() {
+            try {
+                const response = await fetch('https://oscar-cardenas.goatcounter.com/counter');
+                if (response.ok) {
+                    const data = await response.json();
+                    // GoatCounter devuelve un array, tomamos el total o el primer elemento
+                    const count = data.total || (data.length > 0 ? data[0].count : 0);
+                    document.getElementById('gc-count').textContent = count.toLocaleString();
+                } else {
+                    document.getElementById('gc-count').textContent = "Cargando...";
+                }
+            } catch (error) {
+                console.error("Error al cargar contador:", error);
+                document.getElementById('gc-count').textContent = "N/A";
+            }
+        }
+
+        // Ejecutar al cargar la página
+        document.addEventListener('DOMContentLoaded', updateVisitorCount);
     </script>
 </body>
 </html>
