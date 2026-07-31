@@ -9,6 +9,80 @@
     <!-- GoatCounter - Estadísticas privadas -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
+
+    <style>
+        /* === ANIMACIONES CSS === */
+        
+        /* Fade-in + Slide-up al hacer scroll */
+        .section {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Hover en tarjetas */
+        .video-item,
+        .disco-item,
+        .partituras-categoria,
+        .member-card {
+            transition: all 0.3s ease;
+            will-change: transform, box-shadow;
+        }
+        .video-item:hover,
+        .disco-item:hover,
+        .partituras-categoria:hover,
+        .member-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25);
+        }
+
+        /* Botón flotante con pulso */
+        .concert-button {
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        .concert-button:hover {
+            animation: none;
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(90, 103, 216, 0.6);
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Contador con transición numérica */
+        #visit-count {
+            font-weight: bold;
+            color: #c9a961;
+            font-size: 1.3em;
+        }
+
+        /* Animación para conciertos realizados */
+        .concert-highlight {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .concert-highlight.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Máquina de escribir (opcional) */
+        #typewriter {
+            border-right: 2px solid #5a67d8;
+            display: inline-block;
+            margin-left: 6px;
+            width: 0;
+            overflow: hidden;
+            transition: width 0.1s step-end;
+        }
+    </style>
 </head>
 <body>
     <!-- Hero Section con Video del Logo -->
@@ -19,7 +93,7 @@
         </video>
         <div class="hero-content">
             <h1>ÓSCAR CÁRDENAS</h1>
-            <p class="subtitle">Compositor y Guitarrista Mexicano</p>
+            <p class="subtitle">Compositor y Guitarrista Mexicano <span id="typewriter"></span></p>
             
             <blockquote class="cita">
                 "...la única forma verdaderamente completa de acercarse a la música es escuchándola."
@@ -128,30 +202,31 @@
         </div>
     </section>
 
-    <!-- NUEVA SECCIÓN: RECONOCIMIENTO INSTITUCIONAL -->
-    <section id="reconocimiento" class="section">
+    <!-- NUEVA SECCIÓN: CONCIERTOS REALIZADOS -->
+    <section id="conciertos-realizados" class="section">
         <div class="container">
-            <h2>Reconocimiento Institucional Reciente</h2>
-            <div style="background: #fafafa; padding: 30px; border-radius: 10px; border-left: 5px solid #c9a961; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
-                <p style="font-size: 1.1em; margin-bottom: 15px; color: #1a202c;">
-                    La <strong>Secretaría de Cultura</strong> y el <strong>INBAL</strong>, a través del <strong>Museo de Arte Moderno</strong>, han presentado oficialmente el próximo recital de <em>ES PURiO JAZZ quarteto</em> como parte de la programación cultural de la Ciudad de México.
-                </p>
-                <p style="margin-bottom: 20px; color: #2d3748;">
-                    Como <strong>guitarrista, compositor y miembro fundador</strong> de la agrupación, participo en este evento que destaca la fusión orgánica entre el jazz y la música clásica. El programa incluye la interpretación de mis obras originales, como <em>"Apuntes 2012"</em>, reafirmando mi compromiso con la creación y difusión de nuevo repertorio guitarrístico en México.
-                </p>
-                
-                <div style="display: flex; gap: 15px; flex-wrap: wrap; margin-top: 25px;">
-                    <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" class="btn" style="background: #1a202c; color: white; text-decoration: none;">
-                        📰 Ver comunicado oficial (gob.mx)
+            <h2>Conciertos Recientes</h2>
+            <div class="concert-highlight">
+                <h3 style="color: #5a67d8; margin-bottom: 15px;">🎤 Recital en el Museo de Arte Moderno</h3>
+                <p><strong>Fecha:</strong> Miércoles 29 de julio de 2026, 19:00 hrs</p>
+                <p><strong>Lugar:</strong> Museo de Arte Moderno, Bosque de Chapultepec, CDMX</p>
+                <p><strong>Programa:</strong> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de Óscar Cárdenas y Mireya González.</p>
+                <p><strong>Invitado especial:</strong> Fernando Elizalde de la Peña, contrabajo.</p>
+
+                <div style="margin: 25px 0; text-align: center;">
+                    <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" class="btn" style="background: #5a67d8; color: white; text-decoration: none; font-weight: bold;">
+                        📜 Ver programa completo
                     </a>
-                    <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" class="btn" style="background: #c9a961; color: #1a202c; text-decoration: none; font-weight: bold;">
-                        🎵 Ver programa completo del concierto
-                    </a>
+                </div>
+
+                <div style="border-top: 1px solid #e2e8f0; padding-top: 20px; text-align: center;">
+                    <p style="font-size: 1.1em; color: #2d3748; margin-bottom: 10px;">🎥 <strong>Video del concierto disponible próximamente</strong></p>
+                    <p style="color: #718096; font-size: 0.95em;">El INBAL publicará el video oficial en su canal. Te avisaremos por redes sociales.</p>
                 </div>
             </div>
         </div>
     </section>
-    <!-- FIN SECCIÓN RECONOCIMIENTO -->
+    <!-- FIN SECCIÓN CONCIERTOS REALIZADOS -->
 
     <!-- Sección Partituras -->
     <section id="partituras" class="section">
@@ -240,29 +315,16 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2025 Óscar Cárdenas. Todos los derechos reservados.</p>
+            <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             <p>Compositor y Guitarrista Mexicano</p>
             
-            <!-- Contador de Visitas -->
+            <!-- Contador automático de visitas -->
             <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
                 <p style="color: white; font-size: 0.95rem;">
-                    👁️ Visitas totales: 
-                    <span id="visit-count" style="font-weight: bold; margin-left: 0.5rem;">-</span>
+                    👁️ Visitas este mes: <span id="visit-count">0</span>
                 </p>
+                <p style="color: #e0d5b8; font-size: 0.85rem;">Actualizado automáticamente</p>
             </div>
-            
-            <!-- Script del contador con CountAPI -->
-            <script>
-                // Incrementar y mostrar contador de visitas
-                fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
-                    .then(response => response.json())
-                    .then(data => {
-                        document.getElementById('visit-count').textContent = data.value;
-                    })
-                    .catch(error => {
-                        document.getElementById('visit-count').textContent = '27';
-                    });
-            </script>
             
             <div class="social-links">
                 <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank">YouTube</a>
@@ -282,37 +344,29 @@
             <button class="concert-modal-close" onclick="closeConcertModal()">&times;</button>
             <h2 class="concert-modal-title">🎵 Agenda de Conciertos</h2>
             
-            <!-- CONCIERTOS COMO SOLISTA -->
+            <!-- PRÓXIMOS CONCIERTOS -->
             <div class="concert-category">
-                <h3 class="concert-category-title solo">Como Solista</h3>
-                <ul class="concert-list">
-                    <li class="no-concerts">Próximamente se anunciarán nuevas fechas</li>
-                </ul>
+                <h3 class="concert-category-title solo">Próximos eventos</h3>
+                <div class="concert-item">
+                    <div class="concert-date">📅 Agosto 2026 (por confirmar)</div>
+                    <div class="concert-venue">CDMX / Evento por definir</div>
+                    <div class="concert-details">Se anunciará pronto. Mantente atento.</div>
+                </div>
             </div>
 
-            <!-- CONCIERTOS CON ES PURiO JAZZ QUARTETO -->
+            <!-- CONCIERTOS REALIZADOS -->
             <div class="concert-category">
-                <h3 class="concert-category-title quartet">Con ES PURiO JAZZ quarteto</h3>
-                <div class="concert-highlight">
-                    <a href="https://view.flodesk.com/emails/6a2996201b7c0f42f6c84c88" target="_blank">
-                        <img src="images/concierto-museo.jpg" alt="Concierto ES PURiO JAZZ quarteto - Miércoles 29 de julio" style="width: 100%; max-width: 500px; border-radius: 8px; display: block; margin: 0 auto 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
-                    </a>
-                    <div class="concert-date">Miércoles 29 de Julio de 2026, 19:00 hrs</div>
+                <h3 class="concert-category-title past">Conciertos realizados</h3>
+                <div class="concert-item">
+                    <div class="concert-date">📅 Miércoles 29 de julio de 2026</div>
                     <div class="concert-venue">Museo de Arte Moderno, CDMX</div>
-                    <div class="concert-details">Noche de Museos - Entrada libre<br>Fusión de barroco y jazz</div>
+                    <div class="concert-details">Noche de Museos – Entrada libre<br>Programa: Bolling, Montgomery, Mancini, Djavan y obras originales</div>
                     
-                    <!-- QR DENTRO DEL MODAL -->
-                    <div style="text-align: center; margin: 20px 0;">
-                        <div class="qr-modal-container">
-                            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" 
-                                 alt="QR del programa del concierto" style="width: 180px; height: 180px; display: block;">
-                        </div>
-                        <p class="qr-modal-text">📱 Escanea para ver el programa completo</p>
+                    <div style="text-align: center; margin: 15px 0;">
+                        <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" style="display: inline-block; background: #5a67d8; color: white; padding: 8px 16px; border-radius: 6px; font-size: 0.9em; text-decoration: none;">
+                            🔍 Ver programa completo
+                        </a>
                     </div>
-
-                    <a href="https://view.flodesk.com/emails/6a2996201b7c0f42f6c84c88" target="_blank" style="display: inline-block; background: rgba(255,255,255,0.2); color: white !important; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; font-size: 0.9em; margin-top: 10px;">
-                        Ver anuncio completo →
-                    </a>
                 </div>
             </div>
 
@@ -325,7 +379,89 @@
         </div>
     </div>
 
+    <!-- Scripts de animaciones y contador -->
     <script>
+        // === Animación al hacer scroll ===
+        const sections = document.querySelectorAll('.section');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+
+        // Animación del recuadro del concierto
+        const highlight = document.querySelector('.concert-highlight');
+        const highlightObserver = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) {
+                highlight.classList.add('visible');
+            }
+        }, { threshold: 0.2 });
+
+        if (highlight) highlightObserver.observe(highlight);
+
+        // === Contador ascendente ===
+        fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
+            .then(response => response.json())
+            .then(data => {
+                const counter = document.getElementById('visit-count');
+                let current = 0;
+                const target = data.value;
+
+                const updateCounter = () => {
+                    if (current < target) {
+                        current++;
+                        counter.textContent = current;
+                        setTimeout(updateCounter, 30);
+                    }
+                };
+                updateCounter();
+            })
+            .catch(err => {
+                document.getElementById('visit-count').textContent = '—';
+            });
+
+        // === Máquina de escribir (opcional) ===
+        const typewriter = document.getElementById('typewriter');
+        const phrases = [
+            "Compositor y Guitarrista",
+            "Intérprete de jazz y clásica",
+            "Miembro fundador de ES PURiO JAZZ quarteto"
+        ];
+
+        let phraseIndex = 0;
+        let charIndex = 0;
+
+        function type() {
+            if (charIndex < phrases[phraseIndex].length) {
+                typewriter.textContent += phrases[phraseIndex].charAt(charIndex);
+                charIndex++;
+                setTimeout(type, 100);
+            } else {
+                setTimeout(erase, 2000);
+            }
+        }
+
+        function erase() {
+            if (charIndex > 0) {
+                typewriter.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
+                charIndex--;
+                setTimeout(erase, 50);
+            } else {
+                phraseIndex = (phraseIndex + 1) % phrases.length;
+                setTimeout(type, 500);
+            }
+        }
+
+        // Descomenta las siguientes líneas si quieres activar el efecto:
+        // setTimeout(type, 1000);
+
+        // === Modal de conciertos (tu código existente) ===
         function openConcertModal() {
             document.getElementById('concertModal').classList.add('active');
             document.body.style.overflow = 'hidden';
@@ -336,15 +472,13 @@
             document.body.style.overflow = 'auto';
         }
 
-        // Cerrar al hacer clic fuera
         window.onclick = function(event) {
             const modal = document.getElementById('concertModal');
             if (event.target == modal) {
                 closeConcertModal();
             }
-        }
+        };
 
-        // Cerrar con tecla Escape
         document.addEventListener('keydown', function(event) {
             if (event.key === 'Escape') {
                 closeConcertModal();
