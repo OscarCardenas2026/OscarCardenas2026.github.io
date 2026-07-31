@@ -125,6 +125,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             background: #f7fafc;
+            aspect-ratio: 4/3;
         }
         .gallery-item:hover {
             transform: translateY(-5px);
@@ -423,15 +424,15 @@
                     Ver nota oficial de la Secretaría de Cultura
                 </a>
 
-                <!-- GALERÍA DE FOTOS DEL CONCIERTO -->
+                <!-- GALERÍA DE FOTOS DEL CONCIERTO (ORDEN: SOLO PRIMERO, CUARTETO DESPUÉS) -->
                 <div class="gallery-grid">
-                    <div class="gallery-item" onclick="openLightbox('images/concierto-museo-cuarteto.jpg')">
-                        <img src="images/concierto-museo-cuarteto.jpg" alt="ES PURiO JAZZ quarteto en el Museo de Arte Moderno">
-                        <div class="caption">ES PURiO JAZZ quarteto - Museo de Arte Moderno</div>
-                    </div>
                     <div class="gallery-item" onclick="openLightbox('images/concierto-museo-solo.jpg')">
                         <img src="images/concierto-museo-solo.jpg" alt="Óscar Cárdenas - Recital en el Museo">
                         <div class="caption">Óscar Cárdenas - Recital en el Museo</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('images/concierto-museo-cuarteto.jpg')">
+                        <img src="images/concierto-museo-cuarteto.jpg" alt="ES PURiO JAZZ quarteto en el Museo de Arte Moderno">
+                        <div class="caption">ES PURiO JAZZ quarteto - Museo de Arte Moderno</div>
                     </div>
                 </div>
                 <p style="text-align: center; color: #718096; font-size: 0.9em; font-style: italic; margin-top: 15px;">
