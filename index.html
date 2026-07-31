@@ -10,7 +10,7 @@
             async src="//gc.zgo.at/count.js"></script>
 
     <style>
-        /* === BASE === */
+        /* === ESTILOS BASE === */
         * {
             margin: 0;
             padding: 0;
@@ -43,22 +43,20 @@
             transform: translateY(0);
         }
 
-        /* Hover en tarjetas */
+        /* Hover efectivo */
         .video-item,
         .disco-item,
-        .partituras-categoria,
-        .member-card {
+        .partituras-categoria {
             transition: all 0.3s ease;
         }
         .video-item:hover,
         .disco-item:hover,
-        .partituras-categoria:hover,
-        .member-card:hover {
+        .partituras-categoria:hover {
             transform: scale(1.02);
             box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25);
         }
 
-        /* Botón flotante */
+        /* Botón flotante con pulso */
         .concert-button {
             position: fixed;
             bottom: 30px;
@@ -85,29 +83,7 @@
             50% { transform: scale(1.05); }
         }
 
-        /* Contador */
-        .visitor-counter {
-            text-align: center;
-            margin: 1.5rem 0;
-        }
-        #visit-count {
-            font-weight: bold;
-            color: #c9a961;
-            font-size: 1.3em;
-        }
-
-        /* Concieros destacado */
-        .concert-highlight {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1s ease-out;
-        }
-        .concert-highlight.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Modal */
+        /* Modal de conciertos */
         .concert-modal {
             display: none;
             position: fixed;
@@ -128,6 +104,7 @@
             max-width: 500px;
             width: 90%;
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
         }
         .concert-modal-close {
             position: absolute;
@@ -138,27 +115,52 @@
             cursor: pointer;
             color: #5a67d8;
         }
+
+        /* Concieros destacados */
+        .concert-highlight {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .concert-highlight.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Contador */
+        .visitor-counter {
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+        #visit-count {
+            font-weight: bold;
+            color: #c9a961;
+            font-size: 1.3em;
+        }
     </style>
 </head>
 <body>
 
-    <!-- Hero -->
+    <!-- Hero Section -->
     <header class="hero" style="text-align:center; padding: 60px 20px; background: rgba(255,255,255,0.95);">
         <h1>ÓSCAR CÁRDENAS</h1>
         <p class="subtitle" style="font-style:italic; margin: 10px 0; color:#718096;">Compositor y Guitarrista Mexicano</p>
+        
         <blockquote style="max-width: 600px; margin: 20px auto; padding: 15px; background: #f7fafc; border-left: 4px solid #5a67d8;">
             "...la única forma verdaderamente completa de acercarse a la música es escuchándola."  
             <cite style="display:block; text-align:right; font-weight:bold; margin-top:5px;">— Juan Arturo Brennan</cite>
         </blockquote>
+
         <div class="manifiesto" style="max-width: 700px; margin: 20px auto; background:#f7fafc; padding:20px; border-radius:8px;">
             <h2 style="color:#5a67d8; margin-bottom:10px;">Mi compromiso como artista:</h2>
             <p>La expresión musical viva es una de las experiencias más ricas que nos permite sentir toda una gama de sensaciones, desde lo puramente hedonista hasta la más sublime espiritualidad.</p>
             <p>Es una necesidad expresar todo el abanico de sentimientos inmersos en cada obra, llevando en cada presentación la herencia cultural que nos ha determinado como sociedad. El único hilo conductor de mi diversidad musical es el compromiso de compartir contigo la pasión por la que vivo: <strong>hacer música</strong>.</p>
         </div>
+
         <a href="#videos" class="btn" style="background:#5a67d8; color:white; padding:12px 30px; text-decoration:none; border-radius:6px; display:inline-block; margin-top:15px;">Explorar mi música</a>
     </header>
 
-    <!-- Sección Videos -->
+    <!-- Obras en Video -->
     <section id="videos" class="section">
         <div class="container">
             <h2>Obras en Video</h2>
@@ -201,21 +203,100 @@
             <h2>Biografía</h2>
             <div style="line-height:1.7; font-size:0.95em;">
                 <p><strong>ÓSCAR CÁRDENAS</strong> | <em>Guitarrista y Compositor</em></p>
-                <p>Originario de la Ciudad de Chihuahua, Óscar Cárdenas inició su acercamiento a la guitarra de la mano de su padre... [texto completo de tu biografía]</p>
+                <p>Originario de la Ciudad de Chihuahua, Óscar Cárdenas inició su acercamiento a la guitarra de la mano de su padre, para posteriormente formalizar sus estudios con el maestro Cleofas Villegas en su estado natal. En 1989 se trasladó a la Ciudad de México para estudiar en el Conservatorio Nacional de Música bajo la tutela del maestro Juan Carlos Chacón. En 2004 obtuvo la Licenciatura como Instrumentista con especialidad en Guitarra en la Facultad de Música de la UNAM, siendo guiado por los maestros Marco Antonio Anguiano y Juan Carlos Laguna.</p>
+                <p>Su sólida formación se ha enriquecido de manera constante a través de clases magistrales y cursos de perfeccionamiento con figuras de la talla de Alirio Díaz, Leo Brouwer, Frank Bungarten, Iván Rijos, Guillermo González, Julio César Oliva, Josep Cabré, Roberto Aussel, Eduardo Barrios, Roberto Limón y Javier Chamizo, complementando su perfil artístico con estudios de armonía y análisis con el compositor Jaime Uribe.</p>
+                <p>Como concertista, ha ofrecido recitales como solista en diversos estados de la República Mexicana y en Belice. Su versatilidad y dominio del instrumento lo han llevado a actuar como solista con algunas de las más prestigiadas orquestas y coros de México, bajo la batuta de directores como Enrique Diemecke, Jorge Córdoba y Enrique Barrios. Destacado intérprete de la música de nuestro tiempo, ha estrenado numerosas obras de compositores mexicanos y presentado primeras audiciones en México de repertorio extranjero. Su excelencia interpretativa ha sido reconocida con el Segundo Lugar en el Primer Concurso Nacional de Guitarra de Guanajuato (1994) y el Primer Lugar en la XXIII Feria Nacional de la Guitarra de Paracho, Michoacán (1996), donde recibió además una mención especial del maestro Julio César Oliva por la mejor interpretación de su obra.</p>
+                <p>En su faceta compositiva, Óscar Cárdenas ha desarrollado un catálogo diverso y expresivo que abarca desde la guitarra sola y formaciones de cámara (dúos, cuartetos de flautas y saxofones, clarinete solo), hasta obras con voz, piano y flauta. Su pluma también se ha extendido al jazz con su ensamble <em>ES PURiO JAZZ quarteto</em> y al teatro, componiendo la música original para la puesta en escena de <em>Sueño de una noche de verano</em> de W. Shakespeare con el Taller de Clowns de la Universidad Iberoamericana. Asimismo, ha realizado múltiples arreglos de música latinoamericana para ensambles vocales. Es miembro activo del Centro de Apoyo para la Música Mexicana de Concierto (desde 2003) y de la Liga de Compositores, donde se desempeñó como secretario.</p>
+                <p>Su trayectoria discográfica refleja su dualidad como intérprete y creador. Tras su primera grabación como solista en 2001, en 2010 se integró al proyecto <em>ES PURiO JAZZ quarteto</em>, con el cual ha rendido homenaje a Claude Bolling (2010) y explorado el jazz y la composición original (2018), presentando estos programas en importantes salas del país. Como colaborador, ha grabado junto a figuras como Ramón Vargas, Eva María Santana y el Coro Voce In Tempore, y su obra <em>Recuerdos Infantiles</em> fue plasmada por el Cuarteto de Saxofones Anacrúsax. En diciembre de 2025, Óscar Cárdenas presentó su más reciente y ambiciosa producción discográfica como solista: un álbum monográfico dedicado en su totalidad a su obra original, donde explora la guitarra en diálogo con la voz, la flauta, el piano y su ensamble de jazz, consolidando su voz única en el panorama de la composición guitarrística contemporánea.</p>
+                <a href="docs/cv-oscar-cardenas.pdf" target="_blank" class="btn" style="background:#5a67d8; color:white; padding:10px 20px; text-decoration:none; border-radius:6px; display:inline-block; margin-top:15px;">Descargar CV completo (PDF)</a>
             </div>
         </div>
     </section>
 
-    <!-- Conciertos Realizados -->
+    <!-- NUEVA SECCIÓN: CONCIERTOS REALIZADOS -->
     <section id="conciertos-realizados" class="section">
         <div class="container">
             <h2>Conciertos Recientes</h2>
             <div class="concert-highlight" style="background:#fafafa; padding:30px; border-radius:10px; border-left:5px solid #5a67d8; margin-top:20px;">
                 <h3 style="color:#5a67d8; margin-bottom:15px;">🎤 Recital en el Museo de Arte Moderno</h3>
                 <p><strong>Fecha:</strong> Miércoles 29 de julio de 2026, 19:00 hrs</p>
-                <p><strong>Lugar:</strong> Museo de Arte Moderno, CDMX</p>
-                <p><strong>Programa:</strong> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales.</p>
+                <p><strong>Lugar:</strong> Museo de Arte Moderno, Bosque de Chapultepec, CDMX</p>
+                <p><strong>Programa:</strong> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de Óscar Cárdenas y Mireya González.</p>
+                <p><strong>Invitado especial:</strong> Fernando Elizalde de la Peña, contrabajo.</p>
                 <a href="https://oscarcardenas2026.github.io/ES-PURiO-JAZZ/programa.html" target="_blank" style="display:inline-block; background:#5a67d8; color:white; padding:8px 16px; border-radius:4px; margin-top:15px; text-decoration:none;">📜 Ver programa completo</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Partituras -->
+    <section id="partituras" class="section">
+        <div class="container">
+            <h2>Partituras</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:25px; margin-top:20px;">
+                <div style="background:#f7fafc; padding:20px; border-radius:8px;">
+                    <h3>Composiciones Originales</h3>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        <li><a href="partituras/composiciones/comp-cancion-de-cuna.pdf" target="_blank">Canción de Cuna</a></li>
+                        <li><a href="partituras/composiciones/comp-microsuite.pdf" target="_blank">Microsuite</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-1.pdf" target="_blank">Estudio No. 1</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-2.pdf" target="_blank">Estudio No. 2</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-3.pdf" target="_blank">Estudio No. 3</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-4.pdf" target="_blank">Estudio No. 4</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-5.pdf" target="_blank">Estudio No. 5</a></li>
+                    </ul>
+                </div>
+                <div style="background:#f7fafc; padding:20px; border-radius:8px;">
+                    <h3>Arreglos</h3>
+                    <ul style="list-style:none; padding:0; margin:0;">
+                        <li><a href="partituras/arreglos/arr-hotel-de-adan-duo.pdf" target="_blank">Hotel de Adán (Dúo)</a></li>
+                        <li><a href="partituras/arreglos/arr-agua-de-beber.pdf" target="_blank">Agua de Beber</a></li>
+                        <li><a href="partituras/arreglos/arr-morning.pdf" target="_blank">Morning</a></li>
+                        <li><a href="partituras/arreglos/arr-sex-in-a-pan.pdf" target="_blank">Sex in a Pan</a></li>
+                        <li><a href="partituras/arreglos/arr-baby-elephant-walk-a-tres.pdf" target="_blank">Baby Elephant Walk (a tres)</a></li>
+                        <li><a href="partituras/arreglos/arr-la-borrachita.pdf" target="_blank">La Borrachita</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Discografía -->
+    <section id="discos" class="section section-alt" style="background:#f8fafc; padding:40px 0;">
+        <div class="container">
+            <h2>Discografía</h2>
+            <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; margin-top:20px;">
+                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
+                        <img src="images/discos/disco1.jpg?v=2" alt="Óscar Cárdenas en concierto" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <h3>Óscar Cárdenas en concierto</h3>
+                    <p>2001</p>
+                    <p>Primera grabación como solista con obras propias</p>
+                </div>
+                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
+                        <img src="images/discos/disco-bolling-2010.jpg" alt="ES PURiO JAZZ - Homenaje a Claude Bolling" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <h3>ES PURiO JAZZ - Claude Bolling</h3>
+                    <p>2010</p>
+                    <p>Concerto for Classic Guitar and Jazz Piano Trio</p>
+                </div>
+                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
+                        <img src="images/discos/disco-teine-2018.jpg" alt="ES PURiO JAZZ Quarteto - Teine" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <h3>Teine</h3>
+                    <p>2018</p>
+                    <p>Arreglos de jazz y obras originales del cuarteto</p>
+                </div>
+                <div class="disco-item" style="background:#fff; padding:20px; border-radius:8px; box-shadow:0 4px 12px rgba(0,0,0,0.05);">
+                    <div style="height:200px; background:#e2e8f0; display:flex; align-items:center; justify-content:center; margin-bottom:12px; border-radius:6px;">
+                        <img src="images/discos/disco-frente-al-espejo-2025.jpg" alt="Frente al Espejo" style="max-width:100%; max-height:100%;">
+                    </div>
+                    <h3>Frente al Espejo</h3>
+                    <p>2025</p>
+                    <p>Álbum monográfico con obras propias para guitarra sola, voz, flauta y piano</p>
+                </div>
             </div>
         </div>
     </section>
@@ -224,9 +305,14 @@
     <footer class="footer" style="background:#1a202c; color:white; padding:30px 0; text-align:center;">
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
+            <p>Compositor y Guitarrista Mexicano</p>
+            
+            <!-- Contador -->
             <div class="visitor-counter">
-                <p>👁️ Visitas este mes: <span id="visit-count">—</span></p>
+                <p style="color:white;">👁️ Visitas este mes: <span id="visit-count">—</span></p>
             </div>
+            
+            <!-- Redes -->
             <div style="margin-top:15px;">
                 <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color:#c9a961; margin:0 12px;">YouTube</a>
                 <a href="mailto:oecp@protonmail.com" style="color:#c9a961;">Contacto</a>
@@ -246,36 +332,68 @@
                 <div style="background:#f7fafc; padding:15px; border-radius:8px; margin-bottom:15px;">
                     <div style="font-weight:bold; color:#5a67d8;">📅 Agosto 2026 (por confirmar)</div>
                     <div style="color:#718096;">CDMX / Evento por definir</div>
+                    <div style="margin-top:8px; font-size:0.9em;">Se anunciará pronto. Mantente atento.</div>
                 </div>
                 <div style="background:#f7fafc; padding:15px; border-radius:8px;">
                     <div style="font-weight:bold; color:#5a67d8;">📅 Miércoles 29 de julio de 2026</div>
                     <div style="color:#718096;">Museo de Arte Moderno, CDMX</div>
-                    <div style="margin-top:8px; font-size:0.9em;">Noche de Museos — Entrada libre</div>
+                    <div style="margin-top:8px; font-size:0.9em;">Noche de Museos – Entrada libre</div>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
+    <!-- Scripts principales -->
     <script>
         // Leer stats.json
         fetch('stats.json')
             .then(r => r.json())
-            .then(data => document.getElementById('visit-count').textContent = data.monthly_visits || 54)
-            .catch(() => document.getElementById('visit-count').textContent = '54');
+            .then(data => {
+                document.getElementById('visit-count').textContent = data.monthly_visits || 54;
+            })
+            .catch(() => {
+                document.getElementById('visit-count').textContent = '54';
+            });
 
         // Animaciones al hacer scroll
         const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
         }, { threshold: 0.1 });
-        sections.forEach(s => observer.observe(s));
+        sections.forEach(section => observer.observe(section));
+
+        // Animación concierto destacado
+        const highlight = document.querySelector('.concert-highlight');
+        if (highlight) {
+            const obs = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    highlight.classList.add('visible');
+                }
+            }, { threshold: 0.2 });
+            obs.observe(highlight);
+        }
 
         // Modal
-        function openConcertModal() { document.getElementById('concertModal').classList.add('active'); }
-        function closeConcertModal() { document.getElementById('concertModal').classList.remove('active'); }
-        window.onclick = e => e.target.id === 'concertModal' && closeConcertModal();
-        document.addEventListener('keydown', e => e.key === 'Escape' && closeConcertModal());
+        function openConcertModal() {
+            document.getElementById('concertModal').classList.add('active');
+        }
+        function closeConcertModal() {
+            document.getElementById('concertModal').classList.remove('active');
+        }
+        window.onclick = (e) => {
+            if (e.target.id === 'concertModal') {
+                closeConcertModal();
+            }
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConcertModal();
+            }
+        });
     </script>
 </body>
 </html>
