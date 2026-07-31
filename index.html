@@ -22,70 +22,210 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         .hero {
-            position: relative; height: 100vh; width: 100%; overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            color: white; text-align: center;
+            position: relative; 
+            height: 100vh; 
+            width: 100%; 
+            overflow: hidden;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: white; 
+            text-align: center;
         }
         .hero-video {
-            position: absolute; top: 50%; left: 50%;
+            position: absolute; 
+            top: 50%; 
+            left: 50%;
             transform: translate(-50%, -50%);
-            min-width: 100%; min-height: 100%;
-            width: auto; height: auto; z-index: -1; object-fit: cover;
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto; 
+            z-index: -1; 
+            object-fit: cover;
         }
         .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); z-index: 0;
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.4); 
+            z-index: 0;
         }
-        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; }
+        .hero-content { 
+            position: relative; 
+            z-index: 1; 
+            max-width: 800px; 
+            padding: 20px; 
+        }
 
         .section {
-            opacity: 0; transform: translateY(40px);
+            opacity: 0; 
+            transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
             padding: 60px 0;
         }
-        .section.visible { opacity: 1; transform: translateY(0); }
+        .section.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
         
-        h2 { font-size: 2em; margin-bottom: 30px; color: #1e3a8a; text-align: center; }
+        h2 { 
+            font-size: 2em; 
+            margin-bottom: 30px; 
+            color: #1e3a8a; 
+            text-align: center; 
+        }
         
         .video-item, .disco-item { 
-            background: #fff; padding: 20px; border-radius: 10px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05); transition: transform 0.3s;
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            transition: transform 0.3s;
         }
-        .video-item:hover, .disco-item:hover { transform: translateY(-5px); }
+        .video-item:hover, .disco-item:hover { 
+            transform: translateY(-5px); 
+        }
 
-        .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
-        .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 8px; 
+            margin-bottom: 15px; 
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: 0; 
+        }
 
         .concert-button {
-            position: fixed; bottom: 30px; right: 30px;
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px;
             background: linear-gradient(135deg, #5a67d8 0%, #7c3aed 100%);
-            color: white; border: none; padding: 15px 25px; border-radius: 50px;
-            font-size: 1em; font-weight: bold; cursor: pointer;
-            box-shadow: 0 8px 25px rgba(90, 103, 216, 0.4); z-index: 1000;
+            color: white; 
+            border: none; 
+            padding: 15px 25px; 
+            border-radius: 50px;
+            font-size: 1em; 
+            font-weight: bold; 
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(90, 103, 216, 0.4); 
+            z-index: 1000;
             animation: pulse 2s infinite;
+            transition: all 0.3s ease;
         }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
+        .concert-button:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 12px 35px rgba(90, 103, 216, 0.6); 
+        }
+        @keyframes pulse { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.05); } 
+        }
 
         .concert-modal {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 2000;
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.8); 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2000;
         }
-        .concert-modal.active { display: flex; }
+        .concert-modal.active { 
+            display: flex; 
+        }
         .concert-modal-content {
-            background: white; padding: 30px; border-radius: 12px;
-            max-width: 500px; width: 90%; position: relative;
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px;
+            max-width: 500px; 
+            width: 90%; 
+            position: relative;
         }
         .concert-modal-close {
-            position: absolute; top: 10px; right: 15px; font-size: 1.5em;
-            background: none; border: none; cursor: pointer;
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            font-size: 1.5em;
+            background: none; 
+            border: none; 
+            cursor: pointer;
         }
 
-        .visitor-counter { text-align: center; margin: 1.5rem 0; }
-        .visitor-counter img { vertical-align: middle; margin-left: 5px; border: 0; }
+        .visitor-counter { 
+            text-align: center; 
+            margin: 1.5rem 0; 
+        }
+        .visitor-counter img { 
+            vertical-align: middle; 
+            margin-left: 5px; 
+            border: 0; 
+        }
         
-        p { text-align: justify; }
-        .hero-content p { text-align: center; } 
-        .hero-content .manifiesto-text { text-align: justify; }
+        p { 
+            text-align: justify; 
+        }
+        .hero-content p { 
+            text-align: center; 
+        } 
+        .hero-content .manifiesto-text { 
+            text-align: justify; 
+        }
+
+        /* === MEDIA QUERIES PARA MÓVIL === */
+        @media (max-width: 768px) {
+            .hero {
+                height: auto;
+                min-height: 100vh;
+                padding: 80px 20px;
+            }
+            
+            .hero-video {
+                display: none; /* Ocultar video en móvil para mejor rendimiento */
+            }
+            
+            .hero-content {
+                position: static;
+                transform: none;
+                max-width: 100%;
+            }
+            
+            .hero-content h1 {
+                font-size: 2rem !important;
+            }
+            
+            .hero-content .subtitle {
+                font-size: 1.1em !important;
+            }
+            
+            .concert-button {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 0.9em;
+            }
+            
+            footer {
+                padding-bottom: 100px; /* Espacio para el botón flotante */
+            }
+            
+            .section {
+                padding: 40px 0;
+            }
+        }
     </style>
 </head>
 <body>
@@ -98,7 +238,7 @@
         
         <div class="hero-content">
             <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.2;">ÓSCAR CÁRDENAS</h1>
-            <p style="font-style: italic; font-size: clamp(1rem, 3vw, 1.5em); margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Compositor y Guitarrista Mexicano</p>
+            <p class="subtitle" style="font-style: italic; font-size: clamp(1rem, 3vw, 1.5em); margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Compositor y Guitarrista Mexicano</p>
             
             <blockquote style="max-width: 600px; margin: 0 auto 30px; padding: 20px; background: rgba(255,255,255,0.1); border-left: 4px solid #5a67d8; font-style: italic; backdrop-filter: blur(5px);">
                 "...la única forma verdaderamente completa de acercarse a la música es escuchándola."  
@@ -234,14 +374,13 @@
         </div>
     </section>
 
-    <footer style="background: #1a202c; color: white; padding: 40px 0; text-align: center;">
+    <footer style="background: #1a202c; color: white; padding: 40px 0 120px 0; text-align: center;">
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
-            <!-- NUEVO CONTADOR EXCLUSIVO PARA TU PÁGINA PERSONAL -->
             <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
                 <p style="color: white; display: inline-block;">
-                    👁️ Visitas totales: 
+                    ️ Visitas totales: 
                     <a href="http://s01.flagcounter.com/more/XaxB" target="_blank" style="text-decoration: none;">
                         <img src="https://s01.flagcounter.com/count2/XaxB/bg_1A202C/txt_C9A961/border_1A202C/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" 
                              alt="Contador de visitas" 
