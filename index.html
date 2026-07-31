@@ -6,12 +6,11 @@
     <title>Óscar Cárdenas - Compositor y Guitarrista</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- GoatCounter: Estadísticas privadas Y públicas -->
+    <!-- GoatCounter: Estadísticas privadas -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
     <style>
-        /* === ESTILOS BASE Y CORRECCIONES === */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -22,45 +21,27 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
-        /* === HERO SECTION (VIDEO DE FONDO COMPLETO) === */
         .hero {
-            position: relative;
-            height: 100vh; 
-            width: 100%;
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            text-align: center;
+            position: relative; height: 100vh; width: 100%; overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            color: white; text-align: center;
         }
         .hero-video {
-            position: absolute;
-            top: 50%; left: 50%;
+            position: absolute; top: 50%; left: 50%;
             transform: translate(-50%, -50%);
             min-width: 100%; min-height: 100%;
-            width: auto; height: auto;
-            z-index: -1;
-            object-fit: cover;
+            width: auto; height: auto; z-index: -1; object-fit: cover;
         }
         .hero-overlay {
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.4); 
-            z-index: 0;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.4); z-index: 0;
         }
-        .hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 800px;
-            padding: 20px;
-        }
+        .hero-content { position: relative; z-index: 1; max-width: 800px; padding: 20px; }
 
-        /* === ANIMACIONES Y ESTILOS GENERALES === */
         .section {
             opacity: 0; transform: translateY(40px);
             transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
-            padding: 60px 0; 
+            padding: 60px 0;
         }
         .section.visible { opacity: 1; transform: translateY(0); }
         
@@ -75,7 +56,6 @@
         .video-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 8px; margin-bottom: 15px; }
         .video-container iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; }
 
-        /* Botón flotante */
         .concert-button {
             position: fixed; bottom: 30px; right: 30px;
             background: linear-gradient(135deg, #5a67d8 0%, #7c3aed 100%);
@@ -86,7 +66,6 @@
         }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
 
-        /* Modal */
         .concert-modal {
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); justify-content: center; align-items: center; z-index: 2000;
@@ -101,27 +80,16 @@
             background: none; border: none; cursor: pointer;
         }
 
-        /* Contador GoatCounter con Filtro Dorado */
-        .visitor-counter { text-align: center; margin: 1.5rem 0; }
-        .visitor-counter img { 
-            vertical-align: middle; 
-            margin-left: 5px; 
-            border: 0; 
-            /* Este filtro convierte el texto negro/blanco en dorado (#c9a961) */
-            filter: invert(85%) sepia(35%) saturate(600%) hue-rotate(350deg);
-        }
+        .visitor-counter { text-align: center; margin: 1.5rem 0; font-size: 1.1em; }
+        #visit-count { font-weight: bold; color: #c9a961; font-size: 1.3em; margin-left: 5px; }
         
-        /* === CORRECCIÓN DE TEXTO JUSTIFICADO === */
         p { text-align: justify; }
-        
-        /* Ajuste específico para el manifiesto en el hero */
         .hero-content p { text-align: center; } 
         .hero-content .manifiesto-text { text-align: justify; }
     </style>
 </head>
 <body>
 
-    <!-- HERO SECTION CON VIDEO COMPLETO -->
     <header class="hero">
         <div class="hero-overlay"></div>
         <video class="hero-video" autoplay loop muted playsinline preload="auto">
@@ -129,7 +97,6 @@
         </video>
         
         <div class="hero-content">
-            <!-- Título adaptable con clamp() -->
             <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.2;">ÓSCAR CÁRDENAS</h1>
             <p style="font-style: italic; font-size: clamp(1rem, 3vw, 1.5em); margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Compositor y Guitarrista Mexicano</p>
             
@@ -147,7 +114,6 @@
         </div>
     </header>
 
-    <!-- Obras en Video -->
     <section id="videos" class="section">
         <div class="container">
             <h2>Obras en Video</h2>
@@ -189,7 +155,6 @@
         </div>
     </section>
 
-    <!-- Biografía -->
     <section id="biografia" class="section" style="background: #f8fafc;">
         <div class="container">
             <h2>Biografía</h2>
@@ -209,7 +174,6 @@
         </div>
     </section>
 
-    <!-- SECCIÓN CONCIERTOS RECIENTES (CON ENLACE CORREGIDO) -->
     <section id="conciertos-recientes" class="section">
         <div class="container">
             <h2>Conciertos Recientes</h2>
@@ -226,16 +190,14 @@
                     <span style="font-weight: bold; color: #333;">🎵 Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
                 </div>
 
-                <!-- ENLACE OFICIAL DE GOB.MX -->
                 <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" 
                    style="display: inline-block; background: #5a67d8; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
-                     Nota oficial de la Secretaría de Cultura
+                    Ver nota oficial de la Secretaría de Cultura
                 </a>
             </div>
         </div>
     </section>
 
-    <!-- Discografía -->
     <section id="discos" class="section" style="background: #f8fafc;">
         <div class="container">
             <h2>Discografía</h2>
@@ -272,17 +234,12 @@
         </div>
     </section>
 
-    <!-- Footer con Contador GoatCounter Oficial -->
     <footer style="background: #1a202c; color: white; padding: 40px 0; text-align: center;">
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
-            <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
-                <p>
-                    👁️ Visitas totales: 
-                    <!-- Imagen SVG oficial de GoatCounter -->
-                    <img src="https://oscar-cardenas.goatcounter.com/count.svg" alt="Contador de visitas">
-                </p>
+            <div class="visitor-counter">
+                <p>👁️ Visitas totales: <span id="visit-count">Cargando...</span></p>
             </div>
             
             <div style="margin-top: 20px;">
@@ -292,7 +249,6 @@
         </div>
     </footer>
 
-    <!-- Botón flotante y Modal -->
     <button class="concert-button" onclick="openConcertModal()">Próximos Conciertos</button>
 
     <div id="concertModal" class="concert-modal">
@@ -300,14 +256,47 @@
             <button class="concert-modal-close" onclick="closeConcertModal()">&times;</button>
             <h2 style="color: #5a67d8; text-align: center; margin-bottom: 20px;">Agenda</h2>
             <div style="background: #f7fafc; padding: 20px; border-radius: 8px; text-align: center;">
-                <div style="font-weight: bold; color: #5a67d8; font-size: 1.2em;"> Agosto 2026 (por confirmar)</div>
+                <div style="font-weight: bold; color: #5a67d8; font-size: 1.2em;">Agosto 2026 (por confirmar)</div>
                 <div style="color: #718096; margin-top: 10px;">CDMX / Evento por definir</div>
             </div>
         </div>
     </div>
 
-    <!-- Scripts -->
     <script>
+        // === CONTADOR DE GOATCOUNTER VIA PROXY CORS ===
+        async function loadGoatCounterVisits() {
+            try {
+                // Usamos allorigins.win como proxy para evitar CORS
+                const targetUrl = 'https://oscar-cardenas.goatcounter.com/counter';
+                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
+                
+                const response = await fetch(proxyUrl);
+                if (response.ok) {
+                    const data = await response.json();
+                    // allorigins devuelve el contenido en data.contents como string
+                    const counterData = JSON.parse(data.contents);
+                    
+                    // GoatCounter devuelve un array de objetos con {path, count}
+                    let totalVisits = 0;
+                    if (Array.isArray(counterData)) {
+                        totalVisits = counterData.reduce((sum, item) => sum + (item.count || 0), 0);
+                    } else if (counterData.total) {
+                        totalVisits = counterData.total;
+                    }
+                    
+                    document.getElementById('visit-count').textContent = totalVisits.toLocaleString();
+                } else {
+                    document.getElementById('visit-count').textContent = 'No disponible';
+                }
+            } catch (error) {
+                console.error('Error al cargar contador:', error);
+                document.getElementById('visit-count').textContent = 'No disponible';
+            }
+        }
+
+        // Cargar al iniciar
+        document.addEventListener('DOMContentLoaded', loadGoatCounterVisits);
+
         // Animaciones al hacer scroll
         const sections = document.querySelectorAll('.section');
         const observer = new IntersectionObserver(entries => {
