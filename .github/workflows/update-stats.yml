@@ -1,0 +1,36 @@
+name: Update Monthly Visits
+
+on:
+  schedule:
+    - cron: '0 0 * * 1'  # Todos los lunes a las 00:00 UTC
+  workflow_dispatch:     # Para pruebas manuales
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v3
+
+      - name: Read current stats
+        id: read_stats
+        run: |
+          CURRENT=$(jq '.monthly_visits' stats.json)
+          INCREMENT=$((RANDOM % 4 + 2))  # Suma entre 2 y 5
+          NEW=$((CURRENT + INCREMENT))
+          echo "NEW_VISITS=$NEW" >> $GITHUB_ENV
+
+      - name: Update stats.json
+        run: |
+          jq --argjson n "$NEW_VISITS" \
+             --arg date "$(date +%Y-%m-%d)" \
+             '.monthly_visits = $n | .last_updated = $date' \
+             stats.json > temp.json && mv temp.json stats.json
+
+      - name: Commit and push
+        run: |
+          git config user.name "Visit Counter Bot"
+          git config user.email "bot@oscarcardenas.com"
+          git add stats.json
+          git commit -m "📈 Updated visits to ${{ env.NEW_VISITS }}"
+          git push
