@@ -170,12 +170,15 @@
         .visitor-counter { 
             text-align: center; 
             margin: 1.5rem 0; 
+            min-height: 30px;
         }
         .visitor-counter img { 
             vertical-align: middle; 
             margin-left: 5px; 
             border: 0; 
             display: inline-block;
+            max-width: 100%;
+            height: auto;
         }
         
         p { 
@@ -188,12 +191,10 @@
             text-align: justify; 
         }
 
-        /* Footer con espacio extra para el botón flotante */
         footer {
             padding-bottom: 120px;
         }
 
-        /* === MEDIA QUERIES PARA MÓVIL === */
         @media (max-width: 768px) {
             .hero {
                 padding: 120px 15px 60px;
@@ -218,10 +219,6 @@
             .section {
                 padding: 40px 0;
             }
-            
-            .video-container {
-                margin-bottom: 10px;
-            }
         }
     </style>
 </head>
@@ -229,11 +226,9 @@
 
     <header class="hero">
         <div class="hero-overlay"></div>
-        <video class="hero-video" autoplay loop muted playsinline preload="auto" poster="">
+        <video class="hero-video" autoplay loop muted playsinline webkit-playsinline preload="metadata" poster="">
             <source src="images/logo-3d.webm" type="video/webm">
-            <!-- Fallback para navegadores que no soportan webm -->
             <source src="images/logo-3d.mp4" type="video/mp4">
-            Tu navegador no soporta video HTML5.
         </video>
         
         <div class="hero-content">
@@ -321,10 +316,10 @@
                 <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Recital en el Museo de Arte Moderno</h3>
                 
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
+                    <span style="font-weight: bold; color: #333;"> Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;"> Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
+                    <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
                 </div>
                 <div style="margin-bottom: 25px;">
                     <span style="font-weight: bold; color: #333;">🎵 Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
@@ -378,19 +373,20 @@
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
-            <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
-                <p style="color: white;">
+            <!-- Contador Flag Counter -->
+            <div class="visitor-counter">
+                <p style="color: white; margin: 1rem 0;">
                     👁️ Visitas totales: 
-                    <a href="https://info.flagcounter.com/XaxB" target="_blank" style="display: inline-block; margin-left: 10px;">
-                        <img src="https://s01.flagcounter.com/count2/XaxB/bg_1A202C/txt_C9A961/border_1A202C/columns_2/maxflags_10/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" 
+                    <a href="https://s01.flagcounter.com/more/XaxB" target="_blank" rel="noopener noreferrer">
+                        <img src="https://s01.flagcounter.com/count2/XaxB/bg_1A202C/txt_C9A961/border_1A202C/columns_1/maxflags_1/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" 
                              alt="Flag Counter" 
-                             style="border: 0; display: inline-block;">
+                             style="border: 0; margin-left: 10px;">
                     </a>
                 </p>
             </div>
             
             <div style="margin-top: 20px;">
-                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" style="color: #c9a961; margin: 0 15px; text-decoration: none; display: inline-block; padding: 10px 0;">YouTube</a>
+                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" rel="noopener noreferrer" style="color: #c9a961; margin: 0 15px; text-decoration: none; display: inline-block; padding: 10px 0;">YouTube</a>
                 <a href="mailto:oecp@protonmail.com" style="color: #c9a961; text-decoration: none; display: inline-block; padding: 10px 0;">Contacto</a>
             </div>
         </div>
@@ -410,6 +406,18 @@
     </div>
 
     <script>
+        // Forzar carga del video en Firefox
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.play().catch(function(error) {
+                    console.log('Autoplay prevented:', error);
+                    video.muted = true;
+                    video.play();
+                });
+            }
+        });
+
         const sections = document.querySelectorAll('.section');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
