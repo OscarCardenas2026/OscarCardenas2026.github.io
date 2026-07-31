@@ -12,6 +12,9 @@
 
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
@@ -21,6 +24,7 @@
         }
         .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
+        /* === HERO === */
         .hero {
             position: relative; 
             min-height: 100vh; 
@@ -42,8 +46,10 @@
             min-height: 100%;
             width: auto; 
             height: auto; 
-            z-index: -1; 
+            z-index: 0;
             object-fit: cover;
+            /* === DIFUMINADO DEL VIDEO === */
+            filter: blur(3px) brightness(0.7);
         }
         .hero-overlay {
             position: absolute; 
@@ -51,16 +57,18 @@
             left: 0; 
             width: 100%; 
             height: 100%;
-            background: rgba(0,0,0,0.4); 
-            z-index: 0;
+            background: rgba(0,0,0,0.55); /* Overlay un poco más oscuro */
+            z-index: 1;
+            pointer-events: none;
         }
         .hero-content { 
             position: relative; 
-            z-index: 1; 
+            z-index: 2;
             max-width: 800px; 
             width: 100%;
         }
 
+        /* === ANIMACIONES DE SECCIONES === */
         .section {
             opacity: 0; 
             transform: translateY(40px);
@@ -71,24 +79,19 @@
             opacity: 1; 
             transform: translateY(0); 
         }
-        
-        h2 { 
-            font-size: 2em; 
-            margin-bottom: 30px; 
-            color: #1e3a8a; 
-            text-align: center; 
-        }
-        
+
+        /* === TARJETAS CON HOVER === */
         .video-item, .disco-item { 
             background: #fff; 
             padding: 20px; 
             border-radius: 10px; 
             box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
-            transition: transform 0.3s;
+            transition: all 0.3s ease;
             margin-bottom: 20px;
         }
         .video-item:hover, .disco-item:hover { 
-            transform: translateY(-5px); 
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25); 
         }
 
         .video-container { 
@@ -108,6 +111,7 @@
             border: 0; 
         }
 
+        /* === BOTÓN FLOTANTE CON PULSO === */
         .concert-button {
             position: fixed; 
             bottom: 30px; 
@@ -134,6 +138,7 @@
             50% { transform: scale(1.05); } 
         }
 
+        /* === MODAL === */
         .concert-modal {
             display: none; 
             position: fixed; 
@@ -146,9 +151,7 @@
             align-items: center; 
             z-index: 2000;
         }
-        .concert-modal.active { 
-            display: flex; 
-        }
+        .concert-modal.active { display: flex; }
         .concert-modal-content {
             background: white; 
             padding: 30px; 
@@ -156,6 +159,11 @@
             max-width: 500px; 
             width: 90%; 
             position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
         .concert-modal-close {
             position: absolute; 
@@ -167,6 +175,29 @@
             cursor: pointer;
         }
 
+        /* === CONCIERTO DESTACADO === */
+        .concert-highlight {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+        }
+        .concert-highlight.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === BOTONES ANIMADOS === */
+        .btn-animated {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(90, 103, 216, 0.4);
+        }
+
+        /* === CONTADOR === */
         .visitor-counter { 
             text-align: center; 
             margin: 1.5rem 0; 
@@ -181,44 +212,21 @@
             height: auto;
         }
         
-        p { 
-            text-align: justify; 
-        }
-        .hero-content p { 
-            text-align: center; 
-        } 
-        .hero-content .manifiesto-text { 
-            text-align: justify; 
-        }
+        p { text-align: justify; }
+        .hero-content p { text-align: center; } 
+        .hero-content .manifiesto-text { text-align: justify; }
 
-        footer {
-            padding-bottom: 120px;
-        }
+        footer { padding-bottom: 120px; }
 
+        /* === MEDIA QUERIES === */
         @media (max-width: 768px) {
-            .hero {
-                padding: 120px 15px 60px;
-                min-height: 100vh;
-            }
-            
-            .hero-content h1 {
-                font-size: 2.2rem !important;
-            }
-            
-            .hero-content .subtitle {
-                font-size: 1.1em !important;
-            }
-            
-            .concert-button {
-                bottom: 20px;
-                right: 20px;
-                padding: 12px 20px;
-                font-size: 0.85em;
-            }
-            
-            .section {
-                padding: 40px 0;
-            }
+            .hero { padding: 120px 15px 60px; min-height: 100vh; }
+            .hero-content h1 { font-size: 2.2rem !important; }
+            .hero-content .subtitle { font-size: 1.1em !important; }
+            .concert-button { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.85em; }
+            .section { padding: 40px 0; }
+            /* En móvil reducimos un poco el blur para mejor rendimiento */
+            .hero-video { filter: blur(2px) brightness(0.7); }
         }
     </style>
 </head>
@@ -226,7 +234,7 @@
 
     <header class="hero">
         <div class="hero-overlay"></div>
-        <video class="hero-video" autoplay loop muted playsinline webkit-playsinline preload="metadata" poster="">
+        <video class="hero-video" autoplay loop muted playsinline webkit-playsinline preload="metadata">
             <source src="images/logo-3d.webm" type="video/webm">
             <source src="images/logo-3d.mp4" type="video/mp4">
         </video>
@@ -245,7 +253,7 @@
                 <p class="manifiesto-text">La expresión musical viva es una de las experiencias más ricas que nos permite sentir toda una gama de sensaciones. Es una necesidad expresar todo el abanico de sentimientos inmersos en cada obra, llevando la herencia cultural que nos ha determinado. El único hilo conductor de mi diversidad musical es el compromiso de compartir contigo la pasión por la que vivo: <strong>hacer música</strong>.</p>
             </div>
 
-            <a href="#videos" style="background: #5a67d8; color: white; padding: 15px 35px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block; transition: background 0.3s;">Explorar mi música</a>
+            <a href="#videos" class="btn-animated" style="background: #5a67d8; color: white; padding: 15px 35px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block;">Conoce mi trabajo</a>
         </div>
     </header>
 
@@ -303,7 +311,7 @@
                 <p>En su faceta compositiva, ha desarrollado un catálogo diverso que abarca desde guitarra sola hasta formaciones de cámara y jazz con su ensamble <em>ES PURiO JAZZ quarteto</em>. En diciembre de 2025, presentó su álbum monográfico "Frente al Espejo", consolidando su voz única en la composición guitarrística contemporánea.</p>
                 <br>
                 <div style="text-align: center; margin-top: 20px;">
-                    <a href="docs/cv-oscar-cardenas.pdf" target="_blank" style="background: #5a67d8; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Descargar CV completo (PDF)</a>
+                    <a href="docs/cv-oscar-cardenas.pdf" target="_blank" class="btn-animated" style="background: #5a67d8; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Descargar CV completo (PDF)</a>
                 </div>
             </div>
         </div>
@@ -312,11 +320,11 @@
     <section id="conciertos-recientes" class="section">
         <div class="container">
             <h2>Conciertos Recientes</h2>
-            <div style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 800px; margin: 0 auto; border-left: 8px solid #5a67d8;">
+            <div class="concert-highlight" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 800px; margin: 0 auto; border-left: 8px solid #5a67d8;">
                 <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Recital en el Museo de Arte Moderno</h3>
                 
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;"> Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
+                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
                     <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
@@ -326,7 +334,8 @@
                 </div>
 
                 <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" 
-                   style="display: inline-block; background: #5a67d8; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; transition: background 0.3s;">
+                   class="btn-animated"
+                   style="display: inline-block; background: #5a67d8; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold;">
                     Ver nota oficial de la Secretaría de Cultura
                 </a>
             </div>
@@ -373,7 +382,6 @@
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
-            <!-- Contador Flag Counter -->
             <div class="visitor-counter">
                 <p style="color: white; margin: 1rem 0;">
                     👁️ Visitas totales: 
@@ -406,7 +414,6 @@
     </div>
 
     <script>
-        // Forzar carga del video en Firefox
         document.addEventListener('DOMContentLoaded', function() {
             const video = document.querySelector('.hero-video');
             if (video) {
@@ -419,10 +426,24 @@
         });
 
         const sections = document.querySelectorAll('.section');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
         }, { threshold: 0.1 });
-        sections.forEach(s => observer.observe(s));
+        sections.forEach(section => sectionObserver.observe(section));
+
+        const highlight = document.querySelector('.concert-highlight');
+        if (highlight) {
+            const highlightObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    highlight.classList.add('visible');
+                }
+            }, { threshold: 0.2 });
+            highlightObserver.observe(highlight);
+        }
 
         function openConcertModal() {
             document.getElementById('concertModal').classList.add('active');
@@ -430,8 +451,16 @@
         function closeConcertModal() {
             document.getElementById('concertModal').classList.remove('active');
         }
-        window.onclick = e => e.target.id === 'concertModal' && closeConcertModal();
-        document.addEventListener('keydown', e => e.key === 'Escape' && closeConcertModal());
+        window.onclick = (e) => {
+            if (e.target.id === 'concertModal') {
+                closeConcertModal();
+            }
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConcertModal();
+            }
+        });
     </script>
 </body>
 </html>
