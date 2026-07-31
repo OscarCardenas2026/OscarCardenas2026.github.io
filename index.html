@@ -6,7 +6,7 @@
     <title>Óscar Cárdenas - Compositor y Guitarrista</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- GoatCounter: Estadísticas privadas -->
+    <!-- GoatCounter: Solo para TUS estadísticas privadas -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -80,8 +80,8 @@
             background: none; border: none; cursor: pointer;
         }
 
-        .visitor-counter { text-align: center; margin: 1.5rem 0; font-size: 1.1em; }
-        #visit-count { font-weight: bold; color: #c9a961; font-size: 1.3em; margin-left: 5px; }
+        .visitor-counter { text-align: center; margin: 1.5rem 0; }
+        .visitor-counter img { vertical-align: middle; margin-left: 5px; border: 0; }
         
         p { text-align: justify; }
         .hero-content p { text-align: center; } 
@@ -238,8 +238,15 @@
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             
-            <div class="visitor-counter">
-                <p>👁️ Visitas totales: <span id="visit-count">Cargando...</span></p>
+            <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
+                <p>
+                    👁️ Visitas totales: 
+                    <a href="https://info.flagcounter.com/45Sr" target="_blank">
+                        <img src="https://s01.flagcounter.com/count/45Sr/bg_1A202C/txt_C9A961/border_1A202C/columns_1/maxflags_1/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" 
+                             alt="Contador de visitas" 
+                             style="border:0; vertical-align: middle; margin-left: 5px;">
+                    </a>
+                </p>
             </div>
             
             <div style="margin-top: 20px;">
@@ -263,48 +270,12 @@
     </div>
 
     <script>
-        // === CONTADOR DE GOATCOUNTER VIA PROXY CORS ===
-        async function loadGoatCounterVisits() {
-            try {
-                // Usamos allorigins.win como proxy para evitar CORS
-                const targetUrl = 'https://oscar-cardenas.goatcounter.com/counter';
-                const proxyUrl = `https://api.allorigins.win/get?url=${encodeURIComponent(targetUrl)}`;
-                
-                const response = await fetch(proxyUrl);
-                if (response.ok) {
-                    const data = await response.json();
-                    // allorigins devuelve el contenido en data.contents como string
-                    const counterData = JSON.parse(data.contents);
-                    
-                    // GoatCounter devuelve un array de objetos con {path, count}
-                    let totalVisits = 0;
-                    if (Array.isArray(counterData)) {
-                        totalVisits = counterData.reduce((sum, item) => sum + (item.count || 0), 0);
-                    } else if (counterData.total) {
-                        totalVisits = counterData.total;
-                    }
-                    
-                    document.getElementById('visit-count').textContent = totalVisits.toLocaleString();
-                } else {
-                    document.getElementById('visit-count').textContent = 'No disponible';
-                }
-            } catch (error) {
-                console.error('Error al cargar contador:', error);
-                document.getElementById('visit-count').textContent = 'No disponible';
-            }
-        }
-
-        // Cargar al iniciar
-        document.addEventListener('DOMContentLoaded', loadGoatCounterVisits);
-
-        // Animaciones al hacer scroll
         const sections = document.querySelectorAll('.section');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(e => e.isIntersecting && e.target.classList.add('visible'));
         }, { threshold: 0.1 });
         sections.forEach(s => observer.observe(s));
 
-        // Modal
         function openConcertModal() {
             document.getElementById('concertModal').classList.add('active');
         }
