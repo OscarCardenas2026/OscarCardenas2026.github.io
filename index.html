@@ -73,7 +73,7 @@
             transform: translateY(0);
         }
 
-        /* Máquina de escribir (opcional) */
+        /* Máquina de escribir (opcional, desactivado por ahora) */
         #typewriter {
             border-right: 2px solid #5a67d8;
             display: inline-block;
@@ -93,7 +93,7 @@
         </video>
         <div class="hero-content">
             <h1>ÓSCAR CÁRDENAS</h1>
-            <p class="subtitle">Compositor y Guitarrista Mexicano <span id="typewriter"></span></p>
+            <p class="subtitle">Compositor y Guitarrista Mexicano</p>
             
             <blockquote class="cita">
                 "...la única forma verdaderamente completa de acercarse a la música es escuchándola."
@@ -318,12 +318,12 @@
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
             <p>Compositor y Guitarrista Mexicano</p>
             
-            <!-- Contador automático de visitas -->
+            <!-- Contador automático desde stats.json -->
             <div class="visitor-counter" style="margin: 1.5rem 0; text-align: center;">
                 <p style="color: white; font-size: 0.95rem;">
-                    👁️ Visitas este mes: <span id="visit-count">0</span>
+                    👁️ Visitas este mes: <span id="visit-count">—</span>
                 </p>
-                <p style="color: #e0d5b8; font-size: 0.85rem;">Actualizado automáticamente</p>
+                <p style="color: #e0d5b8; font-size: 0.85rem;">Actualizado el <span id="last-update">—</span></p>
             </div>
             
             <div class="social-links">
@@ -379,8 +379,21 @@
         </div>
     </div>
 
-    <!-- Scripts de animaciones y contador -->
+    <!-- Scripts principales -->
     <script>
+        // === Leer stats.json y actualizar contador ===
+        fetch('stats.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('visit-count').textContent = data.monthly_visits;
+                document.getElementById('last-update').textContent = data.last_updated;
+            })
+            .catch(err => {
+                console.warn("No se pudo cargar stats.json", err);
+                document.getElementById('visit-count').textContent = '54';
+                document.getElementById('last-update').textContent = '2026-07-31';
+            });
+
         // === Animación al hacer scroll ===
         const sections = document.querySelectorAll('.section');
         const observer = new IntersectionObserver((entries) => {
@@ -397,71 +410,16 @@
 
         // Animación del recuadro del concierto
         const highlight = document.querySelector('.concert-highlight');
-        const highlightObserver = new IntersectionObserver((entries) => {
-            if (entries[0].isIntersecting) {
-                highlight.classList.add('visible');
-            }
-        }, { threshold: 0.2 });
-
-        if (highlight) highlightObserver.observe(highlight);
-
-        // === Contador ascendente ===
-        fetch('https://api.countapi.xyz/hit/oscarcardenas2026.github.io/visits')
-            .then(response => response.json())
-            .then(data => {
-                const counter = document.getElementById('visit-count');
-                let current = 0;
-                const target = data.value;
-
-                const updateCounter = () => {
-                    if (current < target) {
-                        current++;
-                        counter.textContent = current;
-                        setTimeout(updateCounter, 30);
-                    }
-                };
-                updateCounter();
-            })
-            .catch(err => {
-                document.getElementById('visit-count').textContent = '—';
-            });
-
-        // === Máquina de escribir (opcional) ===
-        const typewriter = document.getElementById('typewriter');
-        const phrases = [
-            "Compositor y Guitarrista",
-            "Intérprete de jazz y clásica",
-            "Miembro fundador de ES PURiO JAZZ quarteto"
-        ];
-
-        let phraseIndex = 0;
-        let charIndex = 0;
-
-        function type() {
-            if (charIndex < phrases[phraseIndex].length) {
-                typewriter.textContent += phrases[phraseIndex].charAt(charIndex);
-                charIndex++;
-                setTimeout(type, 100);
-            } else {
-                setTimeout(erase, 2000);
-            }
+        if (highlight) {
+            const highlightObserver = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    highlight.classList.add('visible');
+                }
+            }, { threshold: 0.2 });
+            highlightObserver.observe(highlight);
         }
 
-        function erase() {
-            if (charIndex > 0) {
-                typewriter.textContent = phrases[phraseIndex].substring(0, charIndex - 1);
-                charIndex--;
-                setTimeout(erase, 50);
-            } else {
-                phraseIndex = (phraseIndex + 1) % phrases.length;
-                setTimeout(type, 500);
-            }
-        }
-
-        // Descomenta las siguientes líneas si quieres activar el efecto:
-        // setTimeout(type, 1000);
-
-        // === Modal de conciertos (tu código existente) ===
+        // === Modal de conciertos ===
         function openConcertModal() {
             document.getElementById('concertModal').classList.add('active');
             document.body.style.overflow = 'hidden';
