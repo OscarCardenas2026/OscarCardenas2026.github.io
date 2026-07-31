@@ -6,7 +6,7 @@
     <title>Óscar Cárdenas - Compositor y Guitarrista</title>
     <link rel="stylesheet" href="css/style.css">
 
-    <!-- GoatCounter -->
+    <!-- GoatCounter: Estadísticas privadas Y públicas -->
     <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
             async src="//gc.zgo.at/count.js"></script>
 
@@ -101,13 +101,14 @@
             background: none; border: none; cursor: pointer;
         }
 
-        /* Contador */
+        /* Contador GoatCounter con Filtro Dorado */
         .visitor-counter { text-align: center; margin: 1.5rem 0; }
         .visitor-counter img { 
             vertical-align: middle; 
             margin-left: 5px; 
             border: 0; 
-            filter: invert(1) sepia(1) saturate(5) hue-rotate(10deg); /* Hace el número dorado */
+            /* Este filtro convierte el texto negro/blanco en dorado (#c9a961) */
+            filter: invert(85%) sepia(35%) saturate(600%) hue-rotate(350deg);
         }
         
         /* === CORRECCIÓN DE TEXTO JUSTIFICADO === */
@@ -216,7 +217,7 @@
                 <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Recital en el Museo de Arte Moderno</h3>
                 
                 <div style="margin-bottom: 15px;">
-                    <span style="font-weight: bold; color: #333;"> Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
+                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
                 </div>
                 <div style="margin-bottom: 15px;">
                     <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
@@ -270,7 +271,7 @@
         </div>
     </section>
 
-    <!-- Footer con Contador SVG Robusto -->
+    <!-- Footer con Contador GoatCounter Oficial -->
     <footer style="background: #1a202c; color: white; padding: 40px 0; text-align: center;">
         <div class="container">
             <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
@@ -278,7 +279,7 @@
             <div class="visitor-counter" style="margin: 1.5rem 0; font-size: 1.1em;">
                 <p>
                     👁️ Visitas totales: 
-                    <!-- Usamos la imagen SVG oficial de GoatCounter -->
+                    <!-- Imagen SVG oficial de GoatCounter -->
                     <img src="https://oscar-cardenas.goatcounter.com/count.svg" alt="Contador de visitas">
                 </p>
             </div>
