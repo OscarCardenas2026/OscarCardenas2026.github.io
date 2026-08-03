@@ -303,42 +303,6 @@
 
         footer { padding-bottom: 120px; }
 
-        /* === ESTILOS PARA PROGRAMA DE MANO === */
-        .program-list {
-            list-style: none;
-            padding: 0;
-            margin: 20px 0;
-        }
-        .program-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #e2e8f0;
-        }
-        .program-list li:last-child {
-            border-bottom: none;
-        }
-        .program-list strong {
-            color: #5a67d8;
-        }
-        .movements {
-            list-style: lower-roman;
-            padding-left: 30px;
-            margin: 5px 0;
-            color: #4a5568;
-        }
-        .dedication {
-            font-style: italic;
-            color: #718096;
-            font-size: 0.9em;
-            margin-left: 10px;
-        }
-        .performers {
-            background: #f7fafc;
-            padding: 10px 15px;
-            border-radius: 6px;
-            margin-top: 15px;
-            border-left: 4px solid #5a67d8;
-        }
-
         /* === MEDIA QUERIES === */
         @media (max-width: 768px) {
             .hero { padding: 120px 15px 60px; min-height: 100vh; }
@@ -454,69 +418,36 @@
                     <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Salón de Usos Múltiples, Plantel Iztapalapa 1 "Ifigenia Martínez Hernández" (IEMS), CDMX
                 </div>
                 <div style="margin-bottom: 25px;">
-                    <span style="font-weight: bold; color: #333;">🎸 Intérpretes:</span> César Castellanos (guitarra) y Daniel Hernández (flauta)
+                    <span style="font-weight: bold; color: #333;">🎵 Me acompañaron:</span> César Castellanos en la guitarra y Daniel Hernández en la flauta
                 </div>
 
-                <h4 style="color: #5a67d8; margin-bottom: 15px;">Programa</h4>
-                <ul class="program-list">
-                    <li>
-                        <strong>I. Microsuite</strong>, para guitarra sola 
-                        <span class="dedication">(a estudiantes principiantes de guitarra)</span>
-                        <ul class="movements">
-                            <li>Preludio</li>
-                            <li>Aire de Sarabanda</li>
-                            <li>Andante</li>
-                            <li>Interludio</li>
-                            <li>Final</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>II. Dos Estudios</strong>, para guitarra sola 
-                        <span class="dedication">(para mi desarrollo guitarrístico)</span>
-                        <ul class="movements">
-                            <li>Estudio No. 1 (de arpegios con cruce de dedos)</li>
-                            <li>Estudio No. 4 (de escalas)</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>III. De Yúmari III</strong>, para guitarra sola 
-                        <span class="dedication">(homenaje a los Rarámuris)</span>
-                        <ul class="movements">
-                            <li>Lento</li>
-                        </ul>
-                    </li>
-                    <li>
-                        <strong>IV. Canción de Cuna</strong>, para guitarra sola 
-                        <span class="dedication">(a mi hija Cynthia)</span>
-                    </li>
-                    <li>
-                        <strong>V. 15 en Mixolidio</strong>, para guitarra sola 
-                        <span class="dedication">(regalo a los 15 años de Cynthia)</span>
-                    </li>
-                    <li>
-                        <strong>VI. ¡A la Libertad!</strong>, para guitarra sola 
-                        <span class="dedication">(a mi compañera de vida)</span>
-                    </li>
-                    <li>
-                        <strong>VII. A Don Beto Son</strong>, para guitarra sola 
-                        <span class="dedication">(a Alberto Rísquez, arquitecto y guitarrista)</span>
-                    </li>
-                    <li>
-                        <strong>VIII. Astillas Escritas</strong>, para flauta y guitarra 
-                        <span class="dedication">(a Memo Soriano y Pa'lo Escrito)</span>
-                        <ul class="movements">
-                            <li>Allegro</li>
-                            <li>Lento</li>
-                            <li>Allegro</li>
-                            <li>Muy Lento</li>
-                            <li>Allegro Molto</li>
-                        </ul>
-                    </li>
-                </ul>
+                <a href="https://dtioc.github.io/frente-al-espejo-conciertos/" target="_blank" 
+                   class="btn-animated"
+                   style="display: inline-block; background: #5a67d8; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 30px;">
+                    📄 Ver programa de mano
+                </a>
 
-                <div class="performers">
-                    <p><strong>🎼 Obras de Óscar Cárdenas</strong></p>
-                    <p style="margin-top: 8px;">💿 Si estás interesado/a en adquirir el CD, escribe a <a href="mailto:oecp@protonmail.com" style="color: #5a67d8; font-weight: bold;">oecp@protonmail.com</a> · Costo: $50 MN</p>
+                <!-- GALERÍA: CARTEL Y FOTOS DEL CONCIERTO -->
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox('images/cartel-cd.jpg')">
+                        <img src="images/cartel-cd.jpg" alt="Cartel de la presentación del CD Frente al Espejo">
+                        <div class="caption">Cartel · Presentación del CD "Frente al Espejo"</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('images/oscar-cd1.jpg')">
+                        <img src="images/oscar-cd1.jpg" alt="Óscar Cárdenas tocando en la presentación del CD">
+                        <div class="caption">Óscar Cárdenas tocando · Presentación del CD</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('images/oscar-cd2.jpg')">
+                        <img src="images/oscar-cd2.jpg" alt="Óscar Cárdenas tocando en la presentación del CD">
+                        <div class="caption">Óscar Cárdenas tocando · Presentación del CD</div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: #718096; font-size: 0.9em; font-style: italic; margin-top: 15px;">
+                    Haz clic en las imágenes para ampliar
+                </p>
+
+                <div style="background: #f7fafc; padding: 10px 15px; border-radius: 6px; margin-top: 15px; border-left: 4px solid #5a67d8;">
+                    <p style="margin: 0;">💿 Si estás interesado/a en adquirir el CD, escribe a <a href="mailto:oecp@protonmail.com" style="color: #5a67d8; font-weight: bold;">oecp@protonmail.com</a> · Costo: $50 MN</p>
                 </div>
             </div>
 
