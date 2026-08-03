@@ -110,6 +110,54 @@
             border: 0; 
         }
 
+        /* === PARTITURAS (DOS COLUMNAS) === */
+        .partituras-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .partitura-card {
+            background: #fff;
+            padding: 25px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        .partitura-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25);
+        }
+        .partitura-card h3 {
+            color: #5a67d8;
+            font-size: 1.4em;
+            margin-bottom: 15px;
+            border-bottom: 3px solid #5a67d8;
+            padding-bottom: 10px;
+        }
+        .partitura-list {
+            list-style: none;
+        }
+        .partitura-list li {
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .partitura-list li:last-child {
+            border-bottom: none;
+        }
+        .partitura-list a {
+            display: block;
+            padding: 10px 5px;
+            color: #5a67d8;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .partitura-list a:hover {
+            padding-left: 12px;
+            color: #7c3aed;
+        }
+
         /* === GALERÍA DE FOTOS === */
         .gallery-grid {
             display: grid;
@@ -312,6 +360,7 @@
             .section { padding: 40px 0; }
             .hero-video { filter: blur(2px) brightness(0.7); }
             .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+            .partituras-grid { grid-template-columns: 1fr; gap: 20px; }
             .lightbox-close { font-size: 2.5em; top: 15px; right: 20px; }
         }
     </style>
@@ -398,6 +447,42 @@
                 <br>
                 <div style="text-align: center; margin-top: 20px;">
                     <a href="docs/cv-oscar-cardenas.pdf" target="_blank" class="btn-animated" style="background: #5a67d8; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Descargar CV completo (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="partituras" class="section">
+        <div class="container">
+            <h2>Partituras</h2>
+            <p style="text-align: center; color: #718096; margin-bottom: 30px;">
+                Partituras disponibles para estudiantes e intérpretes. Haz clic en cualquier título para descargar el PDF.
+            </p>
+            <div class="partituras-grid">
+                <!-- === COLUMNA 1: COMPOSICIONES === -->
+                <div class="partitura-card">
+                    <h3>🎼 Composiciones</h3>
+                    <ul class="partitura-list">
+                        <li><a href="partituras/composiciones/comp-cancion-de-cuna.pdf" download>📄 Canción de Cuna</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-1.pdf" download>📄 Estudio No. 1</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-2.pdf" download>📄 Estudio No. 2</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-3.pdf" download>📄 Estudio No. 3</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-4.pdf" download>📄 Estudio No. 4</a></li>
+                        <li><a href="partituras/composiciones/comp-estudio-5.pdf" download>📄 Estudio No. 5</a></li>
+                        <li><a href="partituras/composiciones/comp-microsuite.pdf" download>📄 Microsuite</a></li>
+                    </ul>
+                </div>
+                <!-- === COLUMNA 2: ARREGLOS === -->
+                <div class="partitura-card">
+                    <h3>🎸 Arreglos</h3>
+                    <ul class="partitura-list">
+                        <li><a href="partituras/arreglos/arr-agua-de-beber.pdf" download>📄 Agua de Beber</a></li>
+                        <li><a href="partituras/arreglos/arr-baby-elephant-walk-a-tres.pdf" download>📄 Baby Elephant Walk (a tres)</a></li>
+                        <li><a href="partituras/arreglos/arr-hotel-de-adan-duo.pdf" download>📄 Hotel de Adán (dúo)</a></li>
+                        <li><a href="partituras/arreglos/arr-la-borrachita.pdf" download>📄 La Borrachita</a></li>
+                        <li><a href="partituras/arreglos/arr-morning.pdf" download>📄 Morning</a></li>
+                        <li><a href="partituras/arreglos/arr-sex-in-a-pan.pdf" download>📄 Sex in a Pan</a></li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -521,7 +606,7 @@
 
             <!-- === ADQUISICIÓN DEL CD === -->
             <div style="background: #fff; padding: 20px 25px; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; margin-top: 30px; border-left: 8px solid #5a67d8;">
-                <p style="margin: 0; text-align: center;">💿 Si estás interesado/a en adquirir algún CD, escribe a <a href="mailto:oecp@protonmail.com" style="color: #5a67d8; font-weight: bold;">oecp@protonmail.com</a></p>
+                <p style="margin: 0; text-align: center;">💿 Si estás interesado/a en adquirir el CD, escribe a <a href="mailto:oecp@protonmail.com" style="color: #5a67d8; font-weight: bold;">oecp@protonmail.com</a></p>
             </div>
         </div>
     </section>
