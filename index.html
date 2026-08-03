@@ -1,143 +1,712 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Frente al Espejo — Conciertos | Obras de Óscar Cárdenas</title>
-<style>
-  :root{
-    --morado:#4a2c7a; --morado-osc:#2e1b52; --dorado:#d9a441;
-    --crema:#f7f3ec; --tinta:#2b2b33;
-  }
-  *{box-sizing:border-box}
-  body{font-family:Georgia,"Times New Roman",serif;margin:0;background:var(--crema);color:var(--tinta);line-height:1.6}
-  .hero{background:linear-gradient(135deg,#2e1b52,#4a2c7a 60%,#6b4fa0);color:#fff;text-align:center;padding:3rem 1rem 2.5rem}
-  .kicker{letter-spacing:.35em;text-transform:uppercase;color:var(--dorado);font-size:.75rem;margin:0}
-  .hero h1{font-size:clamp(2.2rem,6vw,3.5rem);margin:.3rem 0}
-  .subtitle{font-style:italic;color:#e8d9b8;margin:0}
-  main{max-width:860px;margin:0 auto;padding:2rem 1rem}
-  .concierto{background:#fff;border-radius:14px;box-shadow:0 4px 18px rgba(46,27,82,.12);
-             padding:1.8rem 2rem;margin-bottom:2rem;border-top:6px solid var(--dorado)}
-  .concierto h2{color:var(--morado);margin-top:0}
-  .badge{display:inline-block;background:var(--dorado);color:#fff;border-radius:999px;
-         font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;padding:.25rem .8rem;margin-bottom:.5rem}
-  .detalles{list-style:none;padding:0;margin:1rem 0}
-  .detalles li{margin:.45rem 0;padding-left:1.4rem;position:relative}
-  .detalles li::before{content:"◆";color:var(--dorado);position:absolute;left:0}
-  .programa{padding-left:1.2rem}
-  .programa > li{margin-bottom:1rem}
-  .obra{margin:0}
-  .dedicatoria{color:#7a6a4f;font-style:italic}
-  .movimientos{padding-left:1.2rem;margin:.3rem 0}
-  .interpretes{background:var(--crema);border-left:4px solid var(--dorado);
-               padding:.55rem .9rem;font-style:italic;margin:.5rem 0}
-  .cd{background:var(--morado);color:#fff;border-radius:14px;padding:1.4rem 2rem;text-align:center;margin-bottom:2rem}
-  .cd a{color:var(--dorado)}
-  details{background:#fff;border-radius:10px;padding:.8rem 1.2rem;margin-bottom:.8rem;box-shadow:0 2px 8px rgba(46,27,82,.08)}
-  summary{cursor:pointer;color:var(--morado);font-weight:bold}
-  footer{background:var(--morado-osc);color:#cfc3e8;text-align:center;padding:1.2rem;font-size:.85rem}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Óscar Cárdenas - Compositor y Guitarrista</title>
+    <link rel="stylesheet" href="css/style.css">
+
+    <!-- GoatCounter -->
+    <script data-goatcounter="https://oscar-cardenas.goatcounter.com/count"
+            async src="//gc.zgo.at/count.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #f0f4f8 0%, #d9e2ec 100%);
+            min-height: 100vh;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+        /* === HERO === */
+        .hero {
+            position: relative; 
+            min-height: 100vh; 
+            width: 100%; 
+            overflow: hidden;
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            color: white; 
+            text-align: center;
+            padding: 100px 20px 60px;
+        }
+        .hero-video {
+            position: absolute; 
+            top: 50%; 
+            left: 50%;
+            transform: translate(-50%, -50%);
+            min-width: 100%; 
+            min-height: 100%;
+            width: auto; 
+            height: auto; 
+            z-index: 0;
+            object-fit: cover;
+            filter: blur(3px) brightness(0.7);
+        }
+        .hero-overlay {
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.55);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .hero-content { 
+            position: relative; 
+            z-index: 2;
+            max-width: 800px; 
+            width: 100%;
+        }
+
+        /* === ANIMACIONES DE SECCIONES === */
+        .section {
+            opacity: 0; 
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+            padding: 60px 0;
+        }
+        .section.visible { 
+            opacity: 1; 
+            transform: translateY(0); 
+        }
+
+        /* === TARJETAS CON HOVER === */
+        .video-item, .disco-item { 
+            background: #fff; 
+            padding: 20px; 
+            border-radius: 10px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05); 
+            transition: all 0.3s ease;
+            margin-bottom: 20px;
+        }
+        .video-item:hover, .disco-item:hover { 
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(90, 103, 216, 0.25); 
+        }
+
+        .video-container { 
+            position: relative; 
+            padding-bottom: 56.25%; 
+            height: 0; 
+            overflow: hidden; 
+            border-radius: 8px; 
+            margin-bottom: 15px; 
+        }
+        .video-container iframe { 
+            position: absolute; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%; 
+            border: 0; 
+        }
+
+        /* === GALERÍA DE FOTOS === */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: #f7fafc;
+            aspect-ratio: 4/3;
+        }
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(90, 103, 216, 0.3);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 12px 15px;
+            font-size: 0.9em;
+            text-align: center;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+        .gallery-item:hover .caption {
+            transform: translateY(0);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        .lightbox.active {
+            display: flex;
+        }
+        .lightbox img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 3em;
+            color: white;
+            cursor: pointer;
+            background: none;
+            border: none;
+        }
+        .lightbox-close:hover {
+            color: #5a67d8;
+        }
+
+        /* === BOTÓN FLOTANTE CON PULSO === */
+        .concert-button {
+            position: fixed; 
+            bottom: 30px; 
+            right: 30px;
+            background: linear-gradient(135deg, #5a67d8 0%, #7c3aed 100%);
+            color: white; 
+            border: none; 
+            padding: 15px 25px; 
+            border-radius: 50px;
+            font-size: 0.95em; 
+            font-weight: bold; 
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(90, 103, 216, 0.4); 
+            z-index: 1000;
+            animation: pulse 2s infinite;
+            transition: all 0.3s ease;
+        }
+        .concert-button:hover { 
+            transform: scale(1.1); 
+            box-shadow: 0 12px 35px rgba(90, 103, 216, 0.6); 
+        }
+        @keyframes pulse { 
+            0%, 100% { transform: scale(1); } 
+            50% { transform: scale(1.05); } 
+        }
+
+        /* === MODAL === */
+        .concert-modal {
+            display: none; 
+            position: fixed; 
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background: rgba(0,0,0,0.8); 
+            justify-content: center; 
+            align-items: center; 
+            z-index: 2000;
+        }
+        .concert-modal.active { display: flex; }
+        .concert-modal-content {
+            background: white; 
+            padding: 30px; 
+            border-radius: 12px;
+            max-width: 500px; 
+            width: 90%; 
+            position: relative;
+            animation: slideIn 0.3s ease;
+        }
+        @keyframes slideIn {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        .concert-modal-close {
+            position: absolute; 
+            top: 10px; 
+            right: 15px; 
+            font-size: 1.5em;
+            background: none; 
+            border: none; 
+            cursor: pointer;
+        }
+
+        /* === CONCIERTO DESTACADO === */
+        .concert-highlight {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 1s ease-out;
+            margin-bottom: 40px;
+        }
+        .concert-highlight.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* === BOTONES ANIMADOS === */
+        .btn-animated {
+            display: inline-block;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .btn-animated:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(90, 103, 216, 0.4);
+        }
+
+        /* === CONTADOR === */
+        .visitor-counter { 
+            text-align: center; 
+            margin: 1.5rem 0; 
+            min-height: 30px;
+        }
+        .visitor-counter img { 
+            vertical-align: middle; 
+            margin-left: 5px; 
+            border: 0; 
+            display: inline-block;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        p { text-align: justify; }
+        .hero-content p { text-align: center; } 
+        .hero-content .manifiesto-text { text-align: justify; }
+
+        footer { padding-bottom: 120px; }
+
+        /* === ESTILOS PARA PROGRAMA DE MANO === */
+        .program-list {
+            list-style: none;
+            padding: 0;
+            margin: 20px 0;
+        }
+        .program-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .program-list li:last-child {
+            border-bottom: none;
+        }
+        .program-list strong {
+            color: #5a67d8;
+        }
+        .movements {
+            list-style: lower-roman;
+            padding-left: 30px;
+            margin: 5px 0;
+            color: #4a5568;
+        }
+        .dedication {
+            font-style: italic;
+            color: #718096;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+        .performers {
+            background: #f7fafc;
+            padding: 10px 15px;
+            border-radius: 6px;
+            margin-top: 15px;
+            border-left: 4px solid #5a67d8;
+        }
+
+        /* === MEDIA QUERIES === */
+        @media (max-width: 768px) {
+            .hero { padding: 120px 15px 60px; min-height: 100vh; }
+            .hero-content h1 { font-size: 2.2rem !important; }
+            .hero-content .subtitle { font-size: 1.1em !important; }
+            .concert-button { bottom: 20px; right: 20px; padding: 12px 20px; font-size: 0.85em; }
+            .section { padding: 40px 0; }
+            .hero-video { filter: blur(2px) brightness(0.7); }
+            .gallery-grid { grid-template-columns: 1fr; gap: 20px; }
+            .lightbox-close { font-size: 2.5em; top: 15px; right: 20px; }
+        }
+    </style>
 </head>
 <body>
 
-<header class="hero">
-  <p class="kicker">Invitación a la comunidad</p>
-  <h1>Frente al Espejo</h1>
-  <p class="subtitle">Obras de Óscar Cárdenas</p>
-</header>
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <video class="hero-video" autoplay loop muted playsinline webkit-playsinline preload="metadata">
+            <source src="images/logo-3d.webm" type="video/webm">
+            <source src="images/logo-3d.mp4" type="video/mp4">
+        </video>
+        
+        <div class="hero-content">
+            <h1 style="font-size: clamp(2rem, 8vw, 3.5rem); margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.5); line-height: 1.2;">ÓSCAR CÁRDENAS</h1>
+            <p class="subtitle" style="font-style: italic; font-size: clamp(1rem, 3vw, 1.5em); margin-bottom: 30px; text-shadow: 1px 1px 2px rgba(0,0,0,0.5);">Compositor y Guitarrista Mexicano</p>
+            
+            <blockquote style="max-width: 600px; margin: 0 auto 30px; padding: 20px; background: rgba(255,255,255,0.1); border-left: 4px solid #5a67d8; font-style: italic; backdrop-filter: blur(5px);">
+                "...la única forma verdaderamente completa de acercarse a la música es escuchándola."  
+                <cite style="display: block; text-align: right; font-weight: bold; margin-top: 10px;">— Juan Arturo Brennan</cite>
+            </blockquote>
 
-<main>
+            <div style="background: rgba(255,255,255,0.1); padding: 25px; border-radius: 10px; margin-bottom: 30px; backdrop-filter: blur(5px);">
+                <h2 style="color: #fff; font-size: 1.5em; margin-bottom: 15px;">Mi compromiso como artista:</h2>
+                <p class="manifiesto-text">La expresión musical viva es una de las experiencias más ricas que nos permite sentir toda una gama de sensaciones. Es una necesidad expresar todo el abanico de sentimientos inmersos en cada obra, llevando la herencia cultural que nos ha determinado. El único hilo conductor de mi diversidad musical es el compromiso de compartir contigo la pasión por la que vivo: <strong>hacer música</strong>.</p>
+            </div>
 
-  <!-- ============ 1. PRESENTACIÓN DE FRENTE AL ESPEJO ============ -->
-  <section class="concierto" id="frente-al-espejo">
-    <span class="badge">Presentación del CD</span>
-    <h2>Frente al Espejo — Obras de Óscar Cárdenas</h2>
-    <ul class="detalles">
-      <li><strong>Fecha:</strong> martes 26 de mayo de 2026</li>
-      <li><strong>Hora:</strong> 11 h</li>
-      <li><strong>Lugar:</strong> Salón de Usos Múltiples, Plantel Iztapalapa 1 “Ifigenia Martínez Hernández” (IEMS), CDMX</li>
-      <li><strong>Intérpretes:</strong> César Castellanos (guitarra) y Daniel Hernández (flauta)</li>
-    </ul>
+            <a href="#videos" class="btn-animated" style="background: #5a67d8; color: white; padding: 15px 35px; text-decoration: none; border-radius: 30px; font-weight: bold; display: inline-block;">Conoce mi trabajo</a>
+        </div>
+    </header>
 
-    <h3>Programa</h3>
-    <ol class="programa">
-      <li>
-        <p class="obra"><strong>I. Microsuite</strong>, para guitarra sola <span class="dedicatoria">(a estudiantes principiantes de guitarra)</span></p>
-        <ol class="movimientos">
-          <li>Preludio</li>
-          <li>Aire de Sarabanda</li>
-          <li>Andante</li>
-          <li>Interludio</li>
-          <li>Final</li>
-        </ol>
-      </li>
-      <li>
-        <p class="obra"><strong>II. Dos Estudios</strong>, para guitarra sola <span class="dedicatoria">(para mi desarrollo guitarrístico)</span></p>
-        <ol class="movimientos">
-          <li>Estudio No. 1 (de arpegios con cruce de dedos)</li>
-          <li>Estudio No. 4 (de escalas)</li>
-        </ol>
-      </li>
-      <li>
-        <p class="obra"><strong>III. De Yúmari III</strong>, para guitarra sola <span class="dedicatoria">(homenaje a los Rarámuris)</span></p>
-        <ol class="movimientos"><li>Lento</li></ol>
-        <p class="interpretes">Guitarra: César Castellanos</p>
-      </li>
-      <li><p class="obra"><strong>IV. Canción de Cuna</strong>, para guitarra sola <span class="dedicatoria">(a mi hija Cynthia)</span></p></li>
-      <li><p class="obra"><strong>V. 15 en Mixolidio</strong>, para guitarra sola <span class="dedicatoria">(regalo a los 15 años de Cynthia)</span></p></li>
-      <li><p class="obra"><strong>VI. ¡A la Libertad!</strong>, para guitarra sola <span class="dedicatoria">(a mi compañera de vida)</span></p></li>
-      <li><p class="obra"><strong>VII. A Don Beto Son</strong>, para guitarra sola <span class="dedicatoria">(a Alberto Rísquez, arquitecto y guitarrista)</span></p></li>
-      <li>
-        <p class="obra"><strong>VIII. Astillas Escritas</strong>, para flauta y guitarra <span class="dedicatoria">(a Memo Soriano y Pa'lo Escrito)</span></p>
-        <ol class="movimientos">
-          <li>Allegro</li>
-          <li>Lento</li>
-          <li>Allegro</li>
-          <li>Muy Lento</li>
-          <li>Allegro Molto</li>
-        </ol>
-        <p class="interpretes">Flauta: Daniel Hernández</p>
-      </li>
-    </ol>
-  </section>
+    <section id="videos" class="section">
+        <div class="container">
+            <h2>Obras en Video</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px;">
+                
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/iapHOxlsQCo?rel=0&modestbranding=1" title="Zapateado" allowfullscreen></iframe>
+                    </div>
+                    <h3>Zapateado</h3>
+                    <p>Joaquín Rodrigo</p>
+                </div>
 
-  <!-- ============ 2. CONCIERTO DEL CUARTETO ============ -->
-  <!-- EDITAR: completa aquí fecha, hora, lugar y programa del concierto del cuarteto -->
-  <section class="concierto" id="cuarteto">
-    <span class="badge">Concierto</span>
-    <h2>Concierto del cuarteto</h2>
-    <ul class="detalles">
-      <li><strong>Fecha:</strong> por confirmar</li>
-      <li><strong>Hora:</strong> por confirmar</li>
-      <li><strong>Lugar:</strong> por confirmar</li>
-    </ul>
-  </section>
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/CEHN5wnnjeU?rel=0&modestbranding=1" title="Bransle de la Torche" allowfullscreen></iframe>
+                    </div>
+                    <h3>Bransle de la Torche</h3>
+                    <p>Michael Praetorius</p>
+                </div>
 
-  <!-- ============ CD ============ -->
-  <section class="cd">
-    <p>💿 Si estás interesado/a en adquirir el CD, escribe a
-    <a href="mailto:oecp@protonmail.com">oecp@protonmail.com</a> · Costo: $50 MN</p>
-  </section>
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/oKWLNTzeMcA?rel=0&modestbranding=1" title="Guajolota" allowfullscreen></iframe>
+                    </div>
+                    <h3>Guajolota</h3>
+                    <p>Óscar Cárdenas (Obra propia)</p>
+                </div>
 
-  <!-- ============ INTÉRPRETES Y COMPOSITOR ============ -->
-  <details>
-    <summary>Sobre César Castellanos</summary>
-    <p><strong>César Castellanos Calvo</strong> (Tuxtla Gutiérrez, Chiapas, 1982) domina múltiples instrumentos de cuerda pulsada como la guitarra clásica, eléctrica, barroca, la tiorba y el bajo eléctrico. Licenciado y egresado de la maestría en interpretación musical por la Facultad de Música de la UNAM, ha participado en festivales internacionales como el FIMU (Francia) y es continuista en la orquesta barroca <em>Antiqva Metropoli</em>.</p>
-  </details>
-  <details>
-    <summary>Sobre Daniel Hernández</summary>
-    <p><strong>Daniel Hernández</strong> es flautista egresado de la Facultad de Música de la UNAM. Participó en el ensamble de música tradicional japonesa <em>Kasou Kai</em> y forma parte del dúo de arpa y flauta con Mabel Rodríguez, con presentaciones en México y en el Festival de las Noches Blancas (Perm, Rusia).</p>
-  </details>
-  <details>
-    <summary>Sobre Óscar Cárdenas</summary>
-    <p><strong>Óscar Cárdenas</strong> es guitarrista y compositor originario de Chihuahua, egresado de la Facultad de Música de la UNAM. Miembro de la Liga de Compositores desde 2003, en 2025 lanzó <em>Frente al Espejo</em>, producción discográfica con obras de su autoría.</p>
-  </details>
+                <div class="video-item">
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/-SBztXM2KzQ?rel=0&modestbranding=1" title="Cuarteto No. 3" allowfullscreen></iframe>
+                    </div>
+                    <h3>Cuarteto No. 3</h3>
+                    <p>ES PURiO JAZZ quarteto</p>
+                </div>
 
-</main>
+            </div>
+        </div>
+    </section>
 
-<footer>
-  Frente al Espejo · Obras de Óscar Cárdenas · 2025–2026
-</footer>
+    <section id="biografia" class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2>Biografía</h2>
+            <div style="line-height: 1.8; font-size: 1.05em; max-width: 900px; margin: 0 auto;">
+                <p><strong>ÓSCAR CÁRDENAS</strong> | <em>Guitarrista y Compositor</em></p>
+                <br>
+                <p>Originario de la Ciudad de Chihuahua, Óscar Cárdenas inició su acercamiento a la guitarra de la mano de su padre, para posteriormente formalizar sus estudios con el maestro Cleofas Villegas en su estado natal. En 1989 se trasladó a la Ciudad de México para estudiar en el Conservatorio Nacional de Música bajo la tutela del maestro Juan Carlos Chacón. En 2004 obtuvo la Licenciatura como Instrumentista con especialidad en Guitarra en la Facultad de Música de la UNAM.</p>
+                <br>
+                <p>Su sólida formación se ha enriquecido de manera constante a través de clases magistrales con figuras de la talla de Alirio Díaz, Leo Brouwer, Frank Bungarten, entre otros. Como concertista, ha ofrecido recitales en diversos estados de la República Mexicana y en Belice, actuando como solista con prestigiadas orquestas bajo la batuta de directores como Enrique Diemecke y Jorge Córdoba.</p>
+                <br>
+                <p>En su faceta compositiva, ha desarrollado un catálogo diverso que abarca desde guitarra sola hasta formaciones de cámara y jazz con su ensamble <em>ES PURiO JAZZ quarteto</em>. En diciembre de 2025, presentó su álbum monográfico "Frente al Espejo", consolidando su voz única en la composición guitarrística contemporánea.</p>
+                <br>
+                <div style="text-align: center; margin-top: 20px;">
+                    <a href="docs/cv-oscar-cardenas.pdf" target="_blank" class="btn-animated" style="background: #5a67d8; color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none;">Descargar CV completo (PDF)</a>
+                </div>
+            </div>
+        </div>
+    </section>
 
+    <section id="conciertos-recientes" class="section">
+        <div class="container">
+            <h2>Conciertos Recientes</h2>
+            
+            <!-- === CONCIERTO 1: PRESENTACIÓN DEL CD FRENTE AL ESPEJO === -->
+            <div class="concert-highlight" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 900px; margin: 0 auto; border-left: 8px solid #5a67d8;">
+                <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Presentación del CD "Frente al Espejo"</h3>
+                
+                <div style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Martes 26 de mayo de 2026, 11:00 hrs
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Salón de Usos Múltiples, Plantel Iztapalapa 1 "Ifigenia Martínez Hernández" (IEMS), CDMX
+                </div>
+                <div style="margin-bottom: 25px;">
+                    <span style="font-weight: bold; color: #333;">🎸 Intérpretes:</span> César Castellanos (guitarra) y Daniel Hernández (flauta)
+                </div>
+
+                <h4 style="color: #5a67d8; margin-bottom: 15px;">Programa</h4>
+                <ul class="program-list">
+                    <li>
+                        <strong>I. Microsuite</strong>, para guitarra sola 
+                        <span class="dedication">(a estudiantes principiantes de guitarra)</span>
+                        <ul class="movements">
+                            <li>Preludio</li>
+                            <li>Aire de Sarabanda</li>
+                            <li>Andante</li>
+                            <li>Interludio</li>
+                            <li>Final</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>II. Dos Estudios</strong>, para guitarra sola 
+                        <span class="dedication">(para mi desarrollo guitarrístico)</span>
+                        <ul class="movements">
+                            <li>Estudio No. 1 (de arpegios con cruce de dedos)</li>
+                            <li>Estudio No. 4 (de escalas)</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>III. De Yúmari III</strong>, para guitarra sola 
+                        <span class="dedication">(homenaje a los Rarámuris)</span>
+                        <ul class="movements">
+                            <li>Lento</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <strong>IV. Canción de Cuna</strong>, para guitarra sola 
+                        <span class="dedication">(a mi hija Cynthia)</span>
+                    </li>
+                    <li>
+                        <strong>V. 15 en Mixolidio</strong>, para guitarra sola 
+                        <span class="dedication">(regalo a los 15 años de Cynthia)</span>
+                    </li>
+                    <li>
+                        <strong>VI. ¡A la Libertad!</strong>, para guitarra sola 
+                        <span class="dedication">(a mi compañera de vida)</span>
+                    </li>
+                    <li>
+                        <strong>VII. A Don Beto Son</strong>, para guitarra sola 
+                        <span class="dedication">(a Alberto Rísquez, arquitecto y guitarrista)</span>
+                    </li>
+                    <li>
+                        <strong>VIII. Astillas Escritas</strong>, para flauta y guitarra 
+                        <span class="dedication">(a Memo Soriano y Pa'lo Escrito)</span>
+                        <ul class="movements">
+                            <li>Allegro</li>
+                            <li>Lento</li>
+                            <li>Allegro</li>
+                            <li>Muy Lento</li>
+                            <li>Allegro Molto</li>
+                        </ul>
+                    </li>
+                </ul>
+
+                <div class="performers">
+                    <p><strong>🎼 Obras de Óscar Cárdenas</strong></p>
+                    <p style="margin-top: 8px;">💿 Si estás interesado/a en adquirir el CD, escribe a <a href="mailto:oecp@protonmail.com" style="color: #5a67d8; font-weight: bold;">oecp@protonmail.com</a> · Costo: $50 MN</p>
+                </div>
+            </div>
+
+            <!-- === CONCIERTO 2: RECITAL EN EL MUSEO DE ARTE MODERNO === -->
+            <div class="concert-highlight" style="background: white; padding: 40px; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.08); max-width: 900px; margin: 0 auto; border-left: 8px solid #5a67d8;">
+                <h3 style="color: #5a67d8; font-size: 1.8em; margin-bottom: 20px;">Recital en el Museo de Arte Moderno</h3>
+                
+                <div style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #333;">📅 Fecha:</span> Miércoles 29 de julio de 2026, 19:00 hrs
+                </div>
+                <div style="margin-bottom: 15px;">
+                    <span style="font-weight: bold; color: #333;">📍 Lugar:</span> Museo de Arte Moderno, Bosque de Chapultepec, CDMX
+                </div>
+                <div style="margin-bottom: 25px;">
+                    <span style="font-weight: bold; color: #333;">🎵 Programa:</span> Obras de Claude Bolling, Wes Montgomery, Henry Mancini, Djavan y composiciones originales de ES PURiO JAZZ quarteto.
+                </div>
+
+                <a href="https://www.gob.mx/cultura/prensa/el-museo-de-arte-moderno-presenta-un-recital-de-es-purio-jazz-quarteto?idiom=es" target="_blank" 
+                   class="btn-animated"
+                   style="display: inline-block; background: #5a67d8; color: white; padding: 12px 25px; border-radius: 8px; text-decoration: none; font-weight: bold; margin-bottom: 30px;">
+                    Ver nota oficial de la Secretaría de Cultura
+                </a>
+
+                <!-- GALERÍA DE FOTOS DEL CONCIERTO (ORDEN: SOLO PRIMERO, CUARTETO DESPUÉS) -->
+                <div class="gallery-grid">
+                    <div class="gallery-item" onclick="openLightbox('images/concierto-museo-solo.jpg')">
+                        <img src="images/concierto-museo-solo.jpg" alt="Óscar Cárdenas - Recital en el Museo">
+                        <div class="caption">Óscar Cárdenas - Recital en el Museo</div>
+                    </div>
+                    <div class="gallery-item" onclick="openLightbox('images/concierto-museo-cuarteto.jpg')">
+                        <img src="images/concierto-museo-cuarteto.jpg" alt="ES PURiO JAZZ quarteto en el Museo de Arte Moderno">
+                        <div class="caption">ES PURiO JAZZ quarteto - Museo de Arte Moderno</div>
+                    </div>
+                </div>
+                <p style="text-align: center; color: #718096; font-size: 0.9em; font-style: italic; margin-top: 15px;">
+                    Haz clic en las imágenes para ampliar
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section id="discos" class="section" style="background: #f8fafc;">
+        <div class="container">
+            <h2>Discografía</h2>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px;">
+                <div class="disco-item">
+                    <div style="height: 250px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                        <img src="images/discos/disco1.jpg" alt="En concierto" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3>Óscar Cárdenas en concierto</h3>
+                    <p>2001</p>
+                </div>
+                <div class="disco-item">
+                    <div style="height: 250px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                        <img src="images/discos/disco-bolling-2010.jpg" alt="Claude Bolling" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3>ES PURiO JAZZ - Claude Bolling</h3>
+                    <p>2010</p>
+                </div>
+                <div class="disco-item">
+                    <div style="height: 250px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                        <img src="images/discos/disco-teine-2018.jpg" alt="Teine" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3>Teine</h3>
+                    <p>2018</p>
+                </div>
+                <div class="disco-item">
+                    <div style="height: 250px; background: #e2e8f0; display: flex; align-items: center; justify-content: center; margin-bottom: 15px; border-radius: 8px; overflow: hidden;">
+                        <img src="images/discos/disco-frente-al-espejo-2025.jpg" alt="Frente al Espejo" style="width: 100%; height: 100%; object-fit: cover;">
+                    </div>
+                    <h3>Frente al Espejo</h3>
+                    <p>2025</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #1a202c; color: white; padding: 40px 0 120px 0; text-align: center;">
+        <div class="container">
+            <p>&copy; 2026 Óscar Cárdenas. Todos los derechos reservados.</p>
+            
+            <div class="visitor-counter">
+                <p style="color: white; margin: 1rem 0;">
+                    👁️ Visitas totales: 
+                    <a href="https://s01.flagcounter.com/more/XaxB" target="_blank" rel="noopener noreferrer">
+                        <img src="https://s01.flagcounter.com/count2/XaxB/bg_1A202C/txt_C9A961/border_1A202C/columns_1/maxflags_1/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" 
+                             alt="Flag Counter" 
+                             style="border: 0; margin-left: 10px;">
+                    </a>
+                </p>
+            </div>
+            
+            <div style="margin-top: 20px;">
+                <a href="https://www.youtube.com/@%C3%93scarC%C3%A1rdenas-p9p" target="_blank" rel="noopener noreferrer" style="color: #c9a961; margin: 0 15px; text-decoration: none; display: inline-block; padding: 10px 0;">YouTube</a>
+                <a href="mailto:oecp@protonmail.com" style="color: #c9a961; text-decoration: none; display: inline-block; padding: 10px 0;">Contacto</a>
+            </div>
+        </div>
+    </footer>
+
+    <button class="concert-button" onclick="openConcertModal()">Próximos Conciertos</button>
+
+    <!-- Lightbox para ampliar fotos -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close">&times;</button>
+        <img id="lightbox-img" src="" alt="Imagen ampliada">
+    </div>
+
+    <div id="concertModal" class="concert-modal">
+        <div class="concert-modal-content">
+            <button class="concert-modal-close" onclick="closeConcertModal()">&times;</button>
+            <h2 style="color: #5a67d8; text-align: center; margin-bottom: 20px;">Agenda</h2>
+            <div style="background: #f7fafc; padding: 20px; border-radius: 8px; text-align: center;">
+                <div style="font-weight: bold; color: #5a67d8; font-size: 1.2em;">Agosto 2026 (por confirmar)</div>
+                <div style="color: #718096; margin-top: 10px;">CDMX / Evento por definir</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const video = document.querySelector('.hero-video');
+            if (video) {
+                video.play().catch(function(error) {
+                    console.log('Autoplay prevented:', error);
+                    video.muted = true;
+                    video.play();
+                });
+            }
+        });
+
+        // Animaciones de secciones al hacer scroll
+        const sections = document.querySelectorAll('.section');
+        const sectionObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        sections.forEach(section => sectionObserver.observe(section));
+
+        // Animación de los conciertos destacados
+        const highlights = document.querySelectorAll('.concert-highlight');
+        if (highlights.length > 0) {
+            const highlightObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.2 });
+            highlights.forEach(highlight => highlightObserver.observe(highlight));
+        }
+
+        // Lightbox functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Modal
+        function openConcertModal() {
+            document.getElementById('concertModal').classList.add('active');
+        }
+        function closeConcertModal() {
+            document.getElementById('concertModal').classList.remove('active');
+        }
+        window.onclick = (e) => {
+            if (e.target.id === 'concertModal') {
+                closeConcertModal();
+            }
+            if (e.target.id === 'lightbox') {
+                closeLightbox();
+            }
+        };
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeConcertModal();
+                closeLightbox();
+            }
+        });
+    </script>
 </body>
 </html>
